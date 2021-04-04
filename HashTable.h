@@ -1,0 +1,10 @@
+#ifndef DATA_STRUCTURES_HASHTABLE_H
+#define DATA_STRUCTURES_HASHTABLE_H
+
+
+class HashTable {
+
+};
+
+
+#endif //DATA_STRUCTURES_HASHTABLE_H

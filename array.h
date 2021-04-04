@@ -1,0 +1,10 @@
+#ifndef DATA_STRUCTURES_ARRAY_H
+#define DATA_STRUCTURES_ARRAY_H
+
+
+class array {
+
+};
+
+
+#endif //DATA_STRUCTURES_ARRAY_H
