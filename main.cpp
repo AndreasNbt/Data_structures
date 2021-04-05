@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
-#include <accctrl.h>
+
 
 #include "Data_structures/array.h"
 
