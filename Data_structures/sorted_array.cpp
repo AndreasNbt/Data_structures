@@ -24,6 +24,7 @@ int sorted_array::search(const std::string &word) {
             else
                 end = mid - 1;
     }
+    m_SearchIndex = mid;
     return -1;
 
 }
@@ -39,21 +40,25 @@ void sorted_array::display() {
 
 void sorted_array::insert(const std::string &word) {
     int index = search(word);
-    if (index == -1 ) {
+    if (index == -1) {
+        if (words[m_SearchIndex] < word)
+            m_SearchIndex++;
         int i;
-        for (i = length - 1; (i >= 0 && words[i] > word); i--) {
-            words[i + 1] = words[i];
-            wordCounter[i + 1] = wordCounter[i];
+        for (i=length;i>m_SearchIndex;i--)
+        {
+            words[i] = words[i-1];
+            wordCounter[i] = wordCounter[i-1];
         }
-        words[i + 1] = word;
-        wordCounter[i + 1] = 1;
+        words[i] = word;
+        wordCounter[i] = 1;
         length++;
     }
     else
         wordCounter[index]++;
 
-
 }
+
+
 
 void sorted_array::remove(const std::string &word) {
     int index = search(word);

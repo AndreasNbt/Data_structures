@@ -35,8 +35,6 @@ int main()
     else
         std::cerr << "Couldn't open file.\n";
 
-    arr.display();
-    sarr.display();
 
 
 

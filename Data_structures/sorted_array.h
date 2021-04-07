@@ -9,7 +9,7 @@ private:
     std::string *words;
     int *wordCounter;
     long length;
-
+    int m_SearchIndex;
 
 public:
     sorted_array() = delete;
