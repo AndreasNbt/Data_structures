@@ -3,7 +3,7 @@
 
 #include <string>
 #include <iostream>
-#include <utility>
+
 
 struct Node {
     std::string data;
@@ -17,17 +17,18 @@ struct Node {
 class BinarySearchTree {
 
 private:
-    Node *root;
-    int size;
+     Node *root;
+     int size;
 
 private:
     static void Output(Node *t);
 
 public:
+    Node* getRoot();
     BinarySearchTree();
-    void Insert(Node *t);
-    void Delete(Node *t);
-    bool Search(Node *t);
+    void Insert(const std::string& word);
+    void Delete(const std::string& word);
+    bool Search(const std::string& word);
 
     void PreOrder(Node *t);
     void PostOrder(Node *t);

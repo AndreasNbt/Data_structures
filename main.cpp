@@ -5,16 +5,19 @@
 
 #include "Data_structures/array.h"
 #include "Data_structures/sorted_array.h"
+#include "Data_structures/BinarySearchTree.h"
 
 
 std::string Erase(std::string word)
 {
+    std::transform(word.begin(), word.end(),word.begin(), ::tolower);
     word.erase(remove_if(word.begin(), word.end(), [](char c) {return (c == '='  || c == '"' || c == '!' || c == '@' || c == '#' || c == '$' || c == '%' || c == '^' || c == '&' || c == '*' || c == '(' || c == ')' || c == '-' || c == '_' || c == '{' || c == '}' || c == '[' || c == ']' || c == '|' || c == ';' || c == ':' || c == '<' || c == '>' || c == '?' || c == '/' || c == ',' || c == '.' || c == '\'' || c == '~'); }), word.end());
     return word;
 }
 
 int main()
 {
+    /*
     std::ifstream file;
     std::string word, filename;
     filename = "text.txt";
@@ -34,6 +37,11 @@ int main()
         }
     else
         std::cerr << "Couldn't open file.\n";
+
+     */
+
+
+
 
 
 
