@@ -10,8 +10,8 @@ add_executable(Data_structures
         Data_structures/array.h
         Data_structures/sorted_array.cpp
         Data_structures/sorted_array.h
-        Data_structures/BinaryTree.cpp
-        Data_structures/BinaryTree.h
+        Data_structures/BinarySearchTree.cpp
+        Data_structures/BinarySearchTree.h
         Data_structures/HashTable.cpp
         Data_structures/HashTable.h
         Data_structures/AVLTree.cpp
