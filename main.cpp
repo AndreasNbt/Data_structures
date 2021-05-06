@@ -41,6 +41,25 @@ int main()
      */
 
 
+    BinarySearchTree b;
+    b.Insert("F");
+    b.Insert("S");
+
+    b.Insert("C");
+
+    b.Insert("G");
+    b.Insert("Y");
+
+    b.Insert("E");
+    b.Insert("A");
+    b.Insert("T");
+    b.InOrder(b.getRoot());
+
+    b.Insert("B");
+    b.Insert("D");
+    b.Insert("123");
+    b.Delete("C");
+    b.InOrder(b.getRoot());
 
 
 
