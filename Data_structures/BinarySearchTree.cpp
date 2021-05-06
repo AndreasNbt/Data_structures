@@ -99,7 +99,7 @@ bool BinarySearchTree::Delete(const std::string& word) {
         else
             parentNode->rightChild = nullptr;
 
-    delete currentNode; // deletes the appropriate node. Also covers the case when the node has no kids.
+    delete currentNode; // deletes the appropriate node.
     return true;
 }
 
