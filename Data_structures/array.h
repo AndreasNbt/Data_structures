@@ -3,10 +3,8 @@
 
 #include <string>
 
-
-
 class array {
-    private:
+    protected:
         std::string *words;
         int *wordCounter;
         long length;
@@ -15,13 +13,11 @@ class array {
         array() = delete;
         explicit array(int size);
 
-        void insert(const std::string &word);
-        void remove(const std::string &word);
-        int search(const std::string &word) const;
+        virtual void insert(const std::string &word);
+        virtual void remove(const std::string &word);
+        virtual int search(const std::string &word) const;
         std::string& operator[](int index);
         void display();
-
 };
-
 
 #endif //DATA_STRUCTURES_ARRAY_H

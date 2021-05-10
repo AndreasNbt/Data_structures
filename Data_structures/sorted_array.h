@@ -1,14 +1,14 @@
 #ifndef DATA_STRUCTURES_SORTED_ARRAY_H
 #define DATA_STRUCTURES_SORTED_ARRAY_H
 
-
+#include "array.h"
 #include <string>
 
-class sorted_array {
+class sorted_array: public array{
+    // Sorted array inherits from the array class 3 protected members: *words, *wordCounter & length.
+    // Also it inherits 2 public methods from the base class (array class): the [] operator overloading and the display() function.
+    // Finally it has it's own 3 methods for insertion, deletion & searching.
 private:
-    std::string *words;
-    int *wordCounter;
-    long length;
     int m_SearchIndex;
 
 public:
@@ -17,10 +17,7 @@ public:
 
     void insert(const std::string &word);
     void remove(const std::string &word);
-    int search(const std::string &word) ;
-    std::string& operator[](int index);
-    void display();
-
+    int search(const std::string &word);
 };
 
 #endif //DATA_STRUCTURES_SORTED_ARRAY_H
