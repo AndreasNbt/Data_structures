@@ -25,8 +25,8 @@ protected:
 public:
     Node* getRoot();
     BinarySearchTree();
-    void Insert(const std::string& word);
-    bool Delete(const std::string& word);
+    virtual void Insert(const std::string& word);
+    virtual bool Delete(const std::string& word);
     bool Search(const std::string& word);
 
     void PreOrder(Node *t);
