@@ -46,7 +46,7 @@ bool BinarySearchTree::Delete(const std::string& word) {
     Node* parentNode;
     Node *currentNode = root;
 
-    while (currentNode && currentNode->data != word)
+    while (currentNode && currentNode->data != word) // find the node to be deleted and its parent
     {
         parentNode = currentNode;
         if (currentNode->data > word)
@@ -54,7 +54,7 @@ bool BinarySearchTree::Delete(const std::string& word) {
         else
             currentNode = currentNode->rightChild;
     }
-    if (!(currentNode))
+    if (!(currentNode)) // if node is not found, return false
         return false;
 
     if (currentNode->leftChild && currentNode->rightChild) //if node has 2 kids
@@ -100,6 +100,7 @@ bool BinarySearchTree::Delete(const std::string& word) {
             parentNode->rightChild = nullptr;
 
     delete currentNode; // deletes the appropriate node.
+    size--;
     return true;
 }
 
@@ -116,7 +117,6 @@ bool BinarySearchTree::Search(const std::string& word) {
         else
             currentNode = currentNode->rightChild;
     }
-
     return false;
 }
 

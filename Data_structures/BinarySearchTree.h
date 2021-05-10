@@ -16,12 +16,11 @@ struct Node {
 
 class BinarySearchTree {
 
-private:
+protected:
      Node *root;
      int size;
 
-private:
-    static void Output(Node *t);
+     static void Output(Node *t);
 
 public:
     Node* getRoot();

@@ -15,8 +15,8 @@ public:
     sorted_array() = delete;
     explicit sorted_array(int size);
 
-    void insert(const std::string &word);
-    void remove(const std::string &word);
+    void insert(const std::string &word) override;
+    void remove(const std::string &word) override;
     int search(const std::string &word);
 };
 
