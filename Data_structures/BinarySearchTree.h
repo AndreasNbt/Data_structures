@@ -6,24 +6,23 @@
 
 
 struct Node {
-    std::string data;
-    int count;
     Node *leftChild;
     Node *rightChild;
+    std::string data;
+    int count;
+    int height;
     Node() = delete;
-    explicit Node(std::string word) :data(std::move(word)), leftChild(nullptr), rightChild(nullptr), count(1) {}
+    explicit Node(std::string word) :data(std::move(word)), leftChild(nullptr), rightChild(nullptr), height(0), count(1) {}
 };
 
 class BinarySearchTree {
-
 protected:
      Node *root;
      int size;
-
      static void Output(Node *t);
 
 public:
-    Node* getRoot();
+    virtual Node* getRoot();
     BinarySearchTree();
     virtual void Insert(const std::string& word);
     virtual bool Delete(const std::string& word);

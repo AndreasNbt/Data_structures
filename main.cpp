@@ -2,10 +2,10 @@
 #include <fstream>
 #include <algorithm>
 
-
 #include "Data_structures/array.h"
 #include "Data_structures/sorted_array.h"
 #include "Data_structures/BinarySearchTree.h"
+#include "Data_structures/AVLTree.h"
 
 //this is the method we use to lowercase every character in the text and remove the special characters from it to make our word counting easier.
 std::string Erase(std::string word)
@@ -18,6 +18,7 @@ std::string Erase(std::string word)
 int main()
 {
 
+    /*
     std::ifstream file;
     std::string word, filename;
     filename = "text.txt";
@@ -39,29 +40,21 @@ int main()
         std::cerr << "Couldn't open file.\n";
 
 
+*/
 
 
-/*
-    BinarySearchTree b;
-    b.Insert("F");
-    b.Insert("S");
+    AVLTree b;
 
+    b.Insert("Andreas");
+    b.Insert("Basilis");
     b.Insert("C");
-
-    b.Insert("G");
-    b.Insert("Y");
-
-    b.Insert("E");
-    b.Insert("A");
-    b.Insert("T");
+    b.Insert("1234");
+    b.Insert("2");
+    b.Insert("3");
     b.InOrder(b.getRoot());
 
-    b.Insert("B");
-    b.Insert("D");
-    b.Insert("123");
-    b.Delete("C");
-    b.InOrder(b.getRoot());
-    */
+
+
 
 
     return 0;

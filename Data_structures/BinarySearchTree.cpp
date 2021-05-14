@@ -5,15 +5,17 @@ BinarySearchTree::BinarySearchTree()
 {}
 
 void BinarySearchTree::Output(Node *t) {
-    std::cout << t->data << " " << t->count << std::endl;
+    std::cout << t->data << " " << t->count << t->height <<  std::endl;
 }
 
 void BinarySearchTree::Insert(const std::string& word) {
 
     Node* newNode = new Node(word);
 
-    if (root == nullptr)
+    if (root == nullptr) {
         root = newNode;
+        newNode->height = 0;
+    }
     else
     {
         Node *currentNode = root;
@@ -26,6 +28,7 @@ void BinarySearchTree::Insert(const std::string& word) {
             else if (word < currentNode->data){
                 if (currentNode->leftChild == nullptr) {
                     currentNode->leftChild = newNode;
+                    newNode->height = currentNode->height + 1;
                     return;
                 }
                 else
@@ -34,6 +37,7 @@ void BinarySearchTree::Insert(const std::string& word) {
             else {
                 if (currentNode->rightChild == nullptr) {
                     currentNode->rightChild = newNode;
+                    newNode->height = currentNode->height + 1;
                     return;
                 } else
                     currentNode = currentNode->rightChild;}
@@ -79,6 +83,7 @@ bool BinarySearchTree::Delete(const std::string& word) {
 
         tempNode->leftChild = currentNode->leftChild;
         tempNode->rightChild = currentNode->rightChild;
+        tempNode->height = currentNode->height;
     }
     else if (currentNode->leftChild || currentNode->rightChild) // if node has 1 kid
     {
@@ -92,6 +97,7 @@ bool BinarySearchTree::Delete(const std::string& word) {
             parentNode->leftChild = tempNode2;
         else
             parentNode->rightChild = tempNode2;
+        tempNode2->height -= 1;
     }
     else //if node has 0 kids
         if (parentNode->leftChild == currentNode)
