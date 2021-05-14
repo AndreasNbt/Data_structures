@@ -1,11 +1,14 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include <sstream>
 
 #include "Data_structures/array.h"
 #include "Data_structures/sorted_array.h"
 #include "Data_structures/BinarySearchTree.h"
 #include "Data_structures/AVLTree.h"
+
+void print2D(Node *root);
 
 //this is the method we use to lowercase every character in the text and remove the special characters from it to make our word counting easier.
 std::string Erase(std::string word)
@@ -45,13 +48,14 @@ int main()
 
     AVLTree b;
 
-    b.Insert("Andreas");
-    b.Insert("Basilis");
-    b.Insert("C");
-    b.Insert("1234");
-    b.Insert("2");
-    b.Insert("3");
-    b.InOrder(b.getRoot());
+    for (int i=0;i<21;i++)
+    {
+        std::stringstream ss;
+        ss << i;
+        b.Insert(ss.str());
+    }
+
+    print2D(b.getRoot());
 
 
 

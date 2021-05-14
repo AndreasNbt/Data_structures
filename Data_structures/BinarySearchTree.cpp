@@ -5,50 +5,33 @@ BinarySearchTree::BinarySearchTree()
 {}
 
 void BinarySearchTree::Output(Node *t) {
-    std::cout << t->data << " " << t->count << t->height <<  std::endl;
+    std::cout << t->data << " " << t->count <<  std::endl;
 }
+
+Node *BinarySearchTree::InsertNode(Node *n, const std::string &word) {
+    if (!n) {
+        n = new Node(word);
+        return n;
+    } else if (word< n->data) {
+        n->leftChild = InsertNode(n->leftChild, word);
+    } else if (word > n->data) {
+        n->rightChild = InsertNode(n->rightChild, word);
+    } else if (word == n->data) {
+        n->count++;
+    }
+    return n;
+}
+
 
 void BinarySearchTree::Insert(const std::string& word) {
-
-    Node* newNode = new Node(word);
-
-    if (root == nullptr) {
-        root = newNode;
-        newNode->height = 0;
-    }
-    else
-    {
-        Node *currentNode = root;
-        while (currentNode)
-        {
-            if (word == currentNode->data) {
-                currentNode->count++;
-                return;
-            }
-            else if (word < currentNode->data){
-                if (currentNode->leftChild == nullptr) {
-                    currentNode->leftChild = newNode;
-                    newNode->height = currentNode->height + 1;
-                    return;
-                }
-                else
-                    currentNode = currentNode->leftChild;
-            }
-            else {
-                if (currentNode->rightChild == nullptr) {
-                    currentNode->rightChild = newNode;
-                    newNode->height = currentNode->height + 1;
-                    return;
-                } else
-                    currentNode = currentNode->rightChild;}
-            }
-    }
+    root = InsertNode(root, word);
 }
 
-bool BinarySearchTree::Delete(const std::string& word) {
+Node* BinarySearchTree::Delete(const std::string& word) {
 
     Node* parentNode;
     Node *currentNode = root;
+    Node *tempNode = nullptr;
 
     while (currentNode && currentNode->data != word) // find the node to be deleted and its parent
     {
@@ -59,11 +42,11 @@ bool BinarySearchTree::Delete(const std::string& word) {
             currentNode = currentNode->rightChild;
     }
     if (!(currentNode)) // if node is not found, return false
-        return false;
+        return nullptr;
 
     if (currentNode->leftChild && currentNode->rightChild) //if node has 2 kids
     {
-        Node *tempNode = currentNode->leftChild;
+        tempNode = currentNode->leftChild;
         Node *tempParentNode = currentNode;
 
         while (tempNode->rightChild)
@@ -83,21 +66,18 @@ bool BinarySearchTree::Delete(const std::string& word) {
 
         tempNode->leftChild = currentNode->leftChild;
         tempNode->rightChild = currentNode->rightChild;
-        tempNode->height = currentNode->height;
     }
     else if (currentNode->leftChild || currentNode->rightChild) // if node has 1 kid
     {
-        Node *tempNode2;
         if (currentNode->leftChild && currentNode->rightChild == nullptr)
-            tempNode2 = currentNode->leftChild;
+            tempNode = currentNode->leftChild;
         if (currentNode->leftChild == nullptr && currentNode->rightChild)
-            tempNode2 = currentNode->rightChild;
+            tempNode = currentNode->rightChild;
 
         if (parentNode->leftChild == currentNode)
-            parentNode->leftChild = tempNode2;
+            parentNode->leftChild = tempNode;
         else
-            parentNode->rightChild = tempNode2;
-        tempNode2->height -= 1;
+            parentNode->rightChild = tempNode;
     }
     else //if node has 0 kids
         if (parentNode->leftChild == currentNode)
@@ -107,23 +87,23 @@ bool BinarySearchTree::Delete(const std::string& word) {
 
     delete currentNode; // deletes the appropriate node.
     size--;
-    return true;
+    return tempNode;
 }
 
 
 
-bool BinarySearchTree::Search(const std::string& word) {
+Node* BinarySearchTree::Search(const std::string& word) {
     Node *currentNode = root;
     while (currentNode)
     {
         if (word == currentNode->data)
-            return true;
+            return currentNode;
         else if (word < currentNode->data)
             currentNode = currentNode->leftChild;
         else
             currentNode = currentNode->rightChild;
     }
-    return false;
+    return nullptr;
 }
 
 void BinarySearchTree::PreOrder(Node *t) {
@@ -156,6 +136,7 @@ void BinarySearchTree::InOrder(Node *t) {
 Node *BinarySearchTree::getRoot() {
     return root;
 }
+
 
 
 
