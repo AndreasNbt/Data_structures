@@ -1,7 +1,7 @@
 #include "BinarySearchTree.h"
 
 BinarySearchTree::BinarySearchTree()
-    : root(nullptr), size(0)
+    : root(nullptr)
 {}
 
 void BinarySearchTree::Output(Node *t) {
@@ -19,6 +19,7 @@ Node *BinarySearchTree::InsertNode(Node *n, const std::string &word) {
     } else if (word == n->data) {
         n->count++;
     }
+
     return n;
 }
 
@@ -27,70 +28,48 @@ void BinarySearchTree::Insert(const std::string& word) {
     root = InsertNode(root, word);
 }
 
-Node* BinarySearchTree::Delete(const std::string& word) {
+Node* BinarySearchTree::DeleteNode(Node *n, const std::string &word)
+{
+    if (!n)
+        return n;
 
-    Node* parentNode;
-    Node *currentNode = root;
-    Node *tempNode = nullptr;
-
-    while (currentNode && currentNode->data != word) // find the node to be deleted and its parent
-    {
-        parentNode = currentNode;
-        if (currentNode->data > word)
-            currentNode = currentNode->leftChild;
-        else
-            currentNode = currentNode->rightChild;
-    }
-    if (!(currentNode)) // if node is not found, return false
-        return nullptr;
-
-    if (currentNode->leftChild && currentNode->rightChild) //if node has 2 kids
-    {
-        tempNode = currentNode->leftChild;
-        Node *tempParentNode = currentNode;
-
-        while (tempNode->rightChild)
+    if (word < n->data) //searching for the Node
+        n->leftChild = DeleteNode(n->leftChild, word);
+    else if (word > n->data)
+        n->rightChild = DeleteNode(n->rightChild, word);
+    else
+    { //Node found
+        if (n->leftChild == nullptr || n->rightChild == nullptr) // Node has 1 child case
         {
-            tempParentNode = tempNode;
-            tempNode = tempNode->rightChild;
+            Node *temp;
+            if (n->leftChild)
+                temp = n->leftChild;
+            else
+                temp = n->rightChild;
+
+            if (!temp) // if Node has 0 children.
+            {
+                temp = n;
+                n = nullptr;
+            }
+            else // If node has 1 child
+                *n = *temp;
+
+            delete(temp);
         }
-        tempParentNode->rightChild = nullptr;
-        if (tempNode->leftChild)
-            tempParentNode->rightChild = tempNode->leftChild;
-
-        if (parentNode->leftChild == currentNode)
-            parentNode->leftChild = tempNode;
-        else
-            parentNode->rightChild = tempNode;
-
-
-        tempNode->leftChild = currentNode->leftChild;
-        tempNode->rightChild = currentNode->rightChild;
+        else //Node has 2 children. It gets replaced with the max node of its left subtree
+        {
+            Node *temp = findMaxOfSubtree(n->leftChild);
+            n->data = temp->data;
+            n->leftChild = DeleteNode(n->leftChild, temp->data);
+        }
     }
-    else if (currentNode->leftChild || currentNode->rightChild) // if node has 1 kid
-    {
-        if (currentNode->leftChild && currentNode->rightChild == nullptr)
-            tempNode = currentNode->leftChild;
-        if (currentNode->leftChild == nullptr && currentNode->rightChild)
-            tempNode = currentNode->rightChild;
-
-        if (parentNode->leftChild == currentNode)
-            parentNode->leftChild = tempNode;
-        else
-            parentNode->rightChild = tempNode;
-    }
-    else //if node has 0 kids
-        if (parentNode->leftChild == currentNode)
-            parentNode->leftChild = nullptr;
-        else
-            parentNode->rightChild = nullptr;
-
-    delete currentNode; // deletes the appropriate node.
-    size--;
-    return tempNode;
+    return n;
 }
 
-
+void BinarySearchTree::Delete(const std::string& word) {
+   DeleteNode(root, word);
+}
 
 Node* BinarySearchTree::Search(const std::string& word) {
     Node *currentNode = root;
@@ -104,6 +83,14 @@ Node* BinarySearchTree::Search(const std::string& word) {
             currentNode = currentNode->rightChild;
     }
     return nullptr;
+}
+Node *BinarySearchTree::findMaxOfSubtree(Node *n) {
+    if(n == nullptr)
+        return nullptr;
+    else if(n->rightChild == nullptr)
+        return n;
+    else
+        return findMaxOfSubtree(n->rightChild);
 }
 
 void BinarySearchTree::PreOrder(Node *t) {

@@ -48,18 +48,19 @@ int main()
 
     AVLTree b;
 
-    for (int i=0;i<21;i++)
-    {
-        std::stringstream ss;
-        ss << i;
-        b.Insert(ss.str());
-    }
+    b.Insert("11");
+
+    b.Insert("10");
+    b.Insert("15");
+    b.Insert("14");
+    b.Insert("12");
+    b.Insert("13");
+
+    b.Insert("16");
+    b.Insert("18");
+
+
 
     print2D(b.getRoot());
-
-
-
-
-
     return 0;
 }

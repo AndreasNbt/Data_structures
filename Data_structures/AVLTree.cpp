@@ -3,15 +3,15 @@
 
 AVLTree::AVLTree() : BinarySearchTree() {}
 
-Node* AVLTree::InsertNode(Node *n, const std::string &word) {
+Node* AVLTree::InsertAndBalance(Node *n, const std::string &word) {
     if (!n) {
         n = new Node(word);
         return n;
     } else if (word< n->data) {
-        n->leftChild = InsertNode(n->leftChild, word);
+        n->leftChild = InsertAndBalance(n->leftChild, word);
         n = balanceTree(n);
     } else if (word >= n->data) {
-        n->rightChild = InsertNode(n->rightChild, word);
+        n->rightChild = InsertAndBalance(n->rightChild, word);
         n = balanceTree(n);
     } else if (word == n->data) {
         n->count++;
@@ -19,9 +19,59 @@ Node* AVLTree::InsertNode(Node *n, const std::string &word) {
 
     return n;
 }
- Node* AVLTree::Delete(const std::string &word) {
-    BinarySearchTree::Delete(word);
 
+void AVLTree::Insert(const std::string &word) {
+    root = InsertAndBalance(root, word);
+}
+
+Node *AVLTree::DeleteAndBalance(Node *n, const std::string &word) {
+
+    if (!n)
+        return n;
+
+    if (word < n->data) //searching for the Node
+        n->leftChild = DeleteAndBalance(n->leftChild, word);
+    else if (word > n->data)
+        n->rightChild = DeleteAndBalance(n->rightChild, word);
+    else
+    { //Node found
+        if (n->leftChild == nullptr || n->rightChild == nullptr) // Node has 1 child case
+        {
+            Node *temp;
+            if (n->leftChild)
+                temp = n->leftChild;
+            else
+                temp = n->rightChild;
+
+            if (!temp) // if Node has 0 children.
+            {
+                temp = n;
+                n = nullptr;
+            }
+            else // If node has 1 child
+                *n = *temp;
+
+            delete(temp);
+        }
+        else
+        {
+            Node *temp = findMaxOfSubtree(n->leftChild);
+            n->data = temp->data;
+            n->leftChild = DeleteAndBalance(n->leftChild, temp->data);
+        }
+    }
+    if (!n)
+        return n;
+
+    n = balanceTree(n);
+
+    return n;
+
+
+}
+
+ void AVLTree::Delete(const std::string &word) {
+    root = DeleteAndBalance(root, word);
 }
 
 int AVLTree::height(Node *n) {
@@ -41,9 +91,7 @@ int AVLTree::heightDiff(Node *n) {
     return l_height - r_height;
 }
 
-void AVLTree::Insert(const std::string &word) {
-    root = InsertNode(root, word);
-}
+
 
 Node *AVLTree::balanceTree(Node *n) {
     int balanceFactor = heightDiff(n);
@@ -61,8 +109,6 @@ Node *AVLTree::balanceTree(Node *n) {
         else {
             n = L(n);
         }
-
-
     }
     return n;
 }
@@ -101,33 +147,24 @@ void AVLTree::Output(Node *t) {
     std::cout << t->data << " " << t->count << " " << height(t) << std::endl;
 }
 
-
-
 void print2DUtil(Node *root, int space)
 {
-    // Base case
     if (root == nullptr)
         return;
-
-    // Increase distance between levels
     space += 10;
-
-    // Process right child first
     print2DUtil(root->rightChild, space);
 
-    // Print current node after space
-    // count
     std::cout<<std::endl;
     for (int i = 10; i < space; i++)
         std::cout<<" ";
     std::cout<<root->data<<"\n";
 
-    // Process left child
     print2DUtil(root->leftChild, space);
 }
 
 void print2D(Node *root)
 {
-    // Pass initial space count as 0
     print2DUtil(root, 0);
 }
+
+
