@@ -46,7 +46,7 @@ int main()
 */
 
 
-    AVLTree b;
+    BinarySearchTree b;
 
     b.Insert("11");
 
@@ -60,6 +60,7 @@ int main()
     b.Insert("18");
 
 
+    b.Delete("11");
 
     print2D(b.getRoot());
     return 0;

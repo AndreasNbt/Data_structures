@@ -61,6 +61,7 @@ Node* BinarySearchTree::DeleteNode(Node *n, const std::string &word)
         {
             Node *temp = findMaxOfSubtree(n->leftChild);
             n->data = temp->data;
+            n->count = temp->count;
             n->leftChild = DeleteNode(n->leftChild, temp->data);
         }
     }

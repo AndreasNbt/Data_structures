@@ -57,6 +57,7 @@ Node *AVLTree::DeleteAndBalance(Node *n, const std::string &word) {
         {
             Node *temp = findMaxOfSubtree(n->leftChild);
             n->data = temp->data;
+            n->count = temp->count;
             n->leftChild = DeleteAndBalance(n->leftChild, temp->data);
         }
     }
