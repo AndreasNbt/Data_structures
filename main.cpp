@@ -9,7 +9,7 @@
 #include "Data_structures/AVLTree.h"
 #include "Data_structures/HashTable.h"
 
-void print2D(Node *root);
+
 
 //this is the method we use to lowercase every character in the text and remove the special characters from it to make our word counting easier.
 std::string Erase(std::string word)
@@ -22,7 +22,6 @@ std::string Erase(std::string word)
 int main()
 {
 
-    /*
     std::ifstream file;
     std::string word, filename;
     filename = "text.txt";
@@ -30,6 +29,8 @@ int main()
 
     array arr(251352);
     sorted_array sarr(251352);
+    BinarySearchTree btree;
+    AVLTree avl;
     HashTable hash(251352);
 
     file.open(filename.c_str());
@@ -40,20 +41,12 @@ int main()
             if (word.empty()) continue;
             arr.insert(word);
             sarr.insert(word);
+            btree.insert(word);
+            avl.insert(word);
             hash.insert(word);
         }
     else
         std::cerr << "Couldn't open file.\n";
 
 
-*/
-    HashTable hashTable(101);
-    hashTable.insert("A");
-    hashTable.insert("B");
-
-    std::cout << hashTable.search("A");
-
-    hashTable.Print();
-
-    return 0;
 }

@@ -148,24 +148,5 @@ void AVLTree::Output(Node *t) {
     std::cout << t->data << " " << t->count << " " << height(t) << std::endl;
 }
 
-void print2DUtil(Node *root, int space)
-{
-    if (root == nullptr)
-        return;
-    space += 10;
-    print2DUtil(root->rightChild, space);
-
-    std::cout<<std::endl;
-    for (int i = 10; i < space; i++)
-        std::cout<<" ";
-    std::cout<<root->data<<"\n";
-
-    print2DUtil(root->leftChild, space);
-}
-
-void print2D(Node *root)
-{
-    print2DUtil(root, 0);
-}
 
 
