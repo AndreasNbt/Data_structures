@@ -55,6 +55,7 @@ bool HashTable::search(const std::string &word) {
     for (int j = 0; j < size; j++)
     {
         if (hashTable[location].word == word) {
+            std::cout << "The word " << word << " appears " << hashTable[location].count << " times.";
             return true;
         }
         else if (hashTable[location].word.empty())

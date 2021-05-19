@@ -2,6 +2,7 @@
 #include <fstream>
 #include <algorithm>
 #include <sstream>
+#include <chrono>
 
 #include "Data_structures/array.h"
 #include "Data_structures/sorted_array.h"
@@ -34,9 +35,9 @@ int main()
     HashTable hash(251352);
 
     file.open(filename.c_str());
-    if (file.is_open())
-        while (file >> word)
-        {
+    if (file.is_open()) {
+        auto start = std::chrono::steady_clock::now();
+        while (file >> word) {
             word = Erase(word);
             if (word.empty()) continue;
             arr.insert(word);
@@ -45,8 +46,14 @@ int main()
             avl.insert(word);
             hash.insert(word);
         }
+    }
     else
         std::cerr << "Couldn't open file.\n";
 
 
+
+
+
+
+    std::cout << "Done" << std::endl;
 }
