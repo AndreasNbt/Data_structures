@@ -53,7 +53,7 @@ void sorted_array::insert(const std::string &word) {
 void sorted_array::remove(const std::string &word) {
     int index = search(word);
     if (index == -1)
-        std::cout << "Word does not exist in the array.";
+        return;
     else
     {
         for (int i=index;i<length;i++)

@@ -41,7 +41,9 @@ void array::insert(const std::string &word)
 void array::remove(const std::string &word)
 {
     int index = search(word);
-    if (index != -1)
+    if (index == -1)
+        return;
+    else
     {
         length--;
         words[index] = words[length];
@@ -49,8 +51,6 @@ void array::remove(const std::string &word)
         words[length] = "";
         wordCounter[length] = 0;
     }
-    else
-        std::cout << "Word does not exist in the array.";
 }
 
 // a function to print the words and how many times they are found in the text.

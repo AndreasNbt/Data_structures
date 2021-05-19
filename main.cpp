@@ -9,6 +9,7 @@
 #include "Data_structures/BinarySearchTree.h"
 #include "Data_structures/AVLTree.h"
 #include "Data_structures/HashTable.h"
+#include "Timer.h"
 
 
 
@@ -23,10 +24,10 @@ std::string Erase(std::string word)
 int main()
 {
 
-    std::ifstream file;
+    std::ifstream file1, file2, file3, file4, file5;
     std::string word, filename;
     filename = "text.txt";
-
+    Timer timer;
 
     array arr(251352);
     sorted_array sarr(251352);
@@ -34,26 +35,105 @@ int main()
     AVLTree avl;
     HashTable hash(251352);
 
-    file.open(filename.c_str());
-    if (file.is_open()) {
-        auto start = std::chrono::steady_clock::now();
-        while (file >> word) {
+    file1.open(filename);
+    if (file1.is_open()) {
+        timer.start();
+        while (file1 >> word) {
             word = Erase(word);
             if (word.empty()) continue;
             arr.insert(word);
+        }
+        timer.stop();
+        std::cout << "Unsorted Array" << std::endl;
+        std::cout << "Insertions took " << timer.getDuration() << " seconds.\n";
+        std::cout << "--------------\n";
+    }
+    else {
+        std::cerr << "Couldn't open file.\n";
+        return 1;
+    }
+    file1.close();
+
+    file2.open(filename);
+    if (file2.is_open()) {
+        timer.start();
+        while (file2 >> word) {
+            word = Erase(word);
+            if (word.empty()) continue;
             sarr.insert(word);
+        }
+        timer.stop();
+        std::cout << "Sorted Array" << std::endl;
+        std::cout << "Insertions took " << timer.getDuration() << " seconds.\n";
+        std::cout << "--------------\n";
+    }
+    else {
+        std::cerr << "Couldn't open file.\n";
+        return 1;
+    }
+    file2.close();
+
+
+    file3.open(filename);
+    if (file3.is_open()) {
+        timer.start();
+        while (file3 >> word) {
+            word = Erase(word);
+            if (word.empty()) continue;
             btree.insert(word);
-            avl.insert(word);
+        }
+        timer.stop();
+        std::cout << "Binary Search Tree\n";
+        std::cout << "Insertions took " << timer.getDuration() << " seconds.\n";
+        std::cout << "--------------\n";
+    }
+    else {
+        std::cerr << "Couldn't open file.\n";
+        return 1;
+    }
+    file3.close();
+
+
+    file4.open(filename);
+    if (file4.is_open()) {
+        timer.start();
+        while (file4 >> word) {
+            word = Erase(word);
+            if (word.empty()) continue;
+            //avl.insert(word);
+        }
+        timer.stop();
+        std::cout << "AVL Tree\n";
+        std::cout << "Insertions took " << timer.getDuration() << " seconds.\n";
+        std::cout << "--------------\n";
+    }
+    else {
+        std::cerr << "Couldn't open file.\n";
+        return 1;
+    }
+    file4.close();
+
+
+    file5.open(filename);
+    if (file5.is_open()) {
+        timer.start();
+        while (file5 >> word) {
+            word = Erase(word);
+            if (word.empty()) continue;
             hash.insert(word);
         }
+        timer.stop();
+        std::cout << "HashTable\n";
+        std::cout << "Insertions took " << timer.getDuration() << " seconds.\n";
+        std::cout << "--------------\n";
     }
-    else
+    else {
         std::cerr << "Couldn't open file.\n";
+        return 1;
+    }
+    file5.close();
 
 
 
-
-
-
-    std::cout << "Done" << std::endl;
+    return 0;
 }

@@ -16,4 +16,4 @@ add_executable(Data_structures
         Data_structures/HashTable.h
         Data_structures/AVLTree.cpp
         Data_structures/AVLTree.h
-        main.cpp)
+        main.cpp Timer.cpp Timer.h)
