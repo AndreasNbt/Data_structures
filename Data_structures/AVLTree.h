@@ -20,8 +20,8 @@ class AVLTree : public BinarySearchTree {
         Node* balanceTree(Node *n);
     public:
         AVLTree();
-        void Insert(const std::string &word) override;
-        void Delete(const std::string &word) override;
+        void insert(const std::string &word) override;
+        void remove(const std::string &word) override;
 
 };
 

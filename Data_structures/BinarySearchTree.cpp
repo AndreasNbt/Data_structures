@@ -24,7 +24,7 @@ Node *BinarySearchTree::InsertNode(Node *n, const std::string &word) {
 }
 
 
-void BinarySearchTree::Insert(const std::string& word) {
+void BinarySearchTree::insert(const std::string& word) {
     root = InsertNode(root, word);
 }
 
@@ -68,11 +68,11 @@ Node* BinarySearchTree::DeleteNode(Node *n, const std::string &word)
     return n;
 }
 
-void BinarySearchTree::Delete(const std::string& word) {
+void BinarySearchTree::remove(const std::string& word) {
    DeleteNode(root, word);
 }
 
-Node* BinarySearchTree::Search(const std::string& word) {
+Node* BinarySearchTree::search(const std::string& word) {
     Node *currentNode = root;
     while (currentNode)
     {

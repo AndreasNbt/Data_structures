@@ -20,7 +20,7 @@ Node* AVLTree::InsertAndBalance(Node *n, const std::string &word) {
     return n;
 }
 
-void AVLTree::Insert(const std::string &word) {
+void AVLTree::insert(const std::string &word) {
     root = InsertAndBalance(root, word);
 }
 
@@ -71,7 +71,7 @@ Node *AVLTree::DeleteAndBalance(Node *n, const std::string &word) {
 
 }
 
- void AVLTree::Delete(const std::string &word) {
+ void AVLTree::remove(const std::string &word) {
     root = DeleteAndBalance(root, word);
 }
 

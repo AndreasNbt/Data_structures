@@ -7,6 +7,7 @@
 #include "Data_structures/sorted_array.h"
 #include "Data_structures/BinarySearchTree.h"
 #include "Data_structures/AVLTree.h"
+#include "Data_structures/HashTable.h"
 
 void print2D(Node *root);
 
@@ -29,6 +30,7 @@ int main()
 
     array arr(251352);
     sorted_array sarr(251352);
+    HashTable hash(251352);
 
     file.open(filename.c_str());
     if (file.is_open())
@@ -38,30 +40,20 @@ int main()
             if (word.empty()) continue;
             arr.insert(word);
             sarr.insert(word);
+            hash.insert(word);
         }
     else
         std::cerr << "Couldn't open file.\n";
 
 
 */
+    HashTable hashTable(101);
+    hashTable.insert("A");
+    hashTable.insert("B");
 
+    std::cout << hashTable.search("A");
 
-    BinarySearchTree b;
+    hashTable.Print();
 
-    b.Insert("11");
-
-    b.Insert("10");
-    b.Insert("15");
-    b.Insert("14");
-    b.Insert("12");
-    b.Insert("13");
-
-    b.Insert("16");
-    b.Insert("18");
-
-
-    b.Delete("11");
-
-    print2D(b.getRoot());
     return 0;
 }

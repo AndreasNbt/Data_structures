@@ -1,6 +1,7 @@
 #ifndef DATA_STRUCTURES_HASHTABLE_H
 #define DATA_STRUCTURES_HASHTABLE_H
-#define Size 99
+#define C1 5
+#define C2 7
 
 #include <string>
 #include <utility>
@@ -8,22 +9,23 @@
 
 struct HashNode {
     std::string word;
-    int count;
-    HashNode *next;
-    HashNode() : count(0), next(nullptr) {}
-    explicit HashNode(std::string s) : word(std::move(s)), count(1), next(nullptr) {}
+    int count{};
+    HashNode() = default;
 };
 
 class HashTable {
 
 private:
     HashNode *hashTable;
-    int HashFunc(const std::string &word);
+    int size;
+    static int HashFunc(const std::string &word, int i);
 
 public:
-    HashTable();
-    void Insert(const std::string &word);
-    void Search(const std::string &word);
+    explicit HashTable(int size);
+    ~HashTable();
+    void insert(const std::string &word);
+    bool search(const std::string &word);
+    void Print();
 };
 
 
