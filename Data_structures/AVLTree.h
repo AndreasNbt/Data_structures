@@ -15,9 +15,9 @@ class AVLTree : public BinarySearchTree {
         static Node *L(Node *parent);
         static Node *LR(Node *parent);
         static Node *RL(Node *parent);
-        int height(Node *n);
-        int heightDiff(Node *n);
-        Node* balanceTree(Node *n);
+        static Node* balanceTree(Node *n, const std::string& word);
+        static int height(Node *n);
+
     public:
         AVLTree();
         void insert(const std::string &word) override;

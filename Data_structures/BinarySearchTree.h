@@ -10,8 +10,9 @@ struct Node {
     Node *rightChild;
     std::string data;
     int count;
+    int height;
     Node() = delete;
-    explicit Node(std::string word) :data(std::move(word)), leftChild(nullptr), rightChild(nullptr), count(1) {}
+    explicit Node(std::string word) :data(std::move(word)), leftChild(nullptr), rightChild(nullptr), count(1), height(1) {}
 };
 
 class BinarySearchTree {
