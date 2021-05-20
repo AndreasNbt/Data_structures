@@ -11,13 +11,13 @@ void BinarySearchTree::Output(Node *t) {
 }
 
 Node *BinarySearchTree::InsertNode(Node *n, const std::string &word) {
-    if (!n) {   //if there is no data in the tree we just add the new data.
+    if (!n) {   // if there is no data in the node we just add the new data.
         n = new Node(word);
         return n;
 // searching for the Node.
-    } else if (word< n->data) { // if the word is "smaller" than the current nodes data, we use recursion to enter the left child of the node
+    } else if (word< n->data) { // if the word is "smaller" than the current node's data, we use recursion to enter the left child of the node
         n->leftChild = InsertNode(n->leftChild, word);
-    } else if (word > n->data) { // if the word is "bigger" than the current nodes data, we use recursion to enter the right child of the node
+    } else if (word > n->data) { // if the word is "bigger" than the current node's data, we use recursion to enter the right child of the node
         n->rightChild = InsertNode(n->rightChild, word);
     } else if (word == n->data) { // finally if the word is found we increase the counter.
         n->count++;
