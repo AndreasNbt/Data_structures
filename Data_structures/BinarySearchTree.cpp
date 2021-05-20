@@ -1,45 +1,49 @@
 #include "BinarySearchTree.h"
 
+// Binary Search Tree constructor
 BinarySearchTree::BinarySearchTree()
     : root(nullptr)
 {}
 
+// An output method to print the data of the tree
 void BinarySearchTree::Output(Node *t) {
     std::cout << t->data << " " << t->count <<  std::endl;
 }
 
 Node *BinarySearchTree::InsertNode(Node *n, const std::string &word) {
-    if (!n) {
+    if (!n) {   //if there is no data in the tree we just add the new data.
         n = new Node(word);
         return n;
-    } else if (word< n->data) {
+// searching for the Node.
+    } else if (word< n->data) { // if the word is "smaller" than the current nodes data, we use recursion to enter the left child of the node
         n->leftChild = InsertNode(n->leftChild, word);
-    } else if (word > n->data) {
+    } else if (word > n->data) { // if the word is "bigger" than the current nodes data, we use recursion to enter the right child of the node
         n->rightChild = InsertNode(n->rightChild, word);
-    } else if (word == n->data) {
+    } else if (word == n->data) { // finally if the word is found we increase the counter.
         n->count++;
     }
 
     return n;
 }
 
-
+// insert method, this is the function we use in the main.cpp file to make insertions.
+// InsertNode method does all the work for the insertion.
 void BinarySearchTree::insert(const std::string& word) {
     root = InsertNode(root, word);
 }
 
 Node* BinarySearchTree::DeleteNode(Node *n, const std::string &word)
 {
-    if (!n)
+    if (!n) //if there are no Nodes in the tree we just stop the method because there is nothing to delete.
         return n;
 
-    if (word < n->data) //searching for the Node
+    if (word < n->data) //searching for the Node.
         n->leftChild = DeleteNode(n->leftChild, word);
     else if (word > n->data)
         n->rightChild = DeleteNode(n->rightChild, word);
     else
     { //Node found
-        if (n->leftChild == nullptr || n->rightChild == nullptr) // Node has 1 child case
+        if (n->leftChild == nullptr || n->rightChild == nullptr) // Node has 1 child case.
         {
             Node *temp;
             if (n->leftChild)
@@ -52,12 +56,12 @@ Node* BinarySearchTree::DeleteNode(Node *n, const std::string &word)
                 temp = n;
                 n = nullptr;
             }
-            else // If node has 1 child
+            else // If node has 1 child.
                 *n = *temp;
 
             delete(temp);
         }
-        else //Node has 2 children. It gets replaced with the max node of its left subtree
+        else //Node has 2 children. It gets replaced with the max node of its left subtree.
         {
             Node *temp = findMaxOfSubtree(n->leftChild);
             n->data = temp->data;
@@ -68,10 +72,13 @@ Node* BinarySearchTree::DeleteNode(Node *n, const std::string &word)
     return n;
 }
 
+// delete method, this is the function we use in the main.cpp file to make deletions.
+// DeleteNode method does all the work for the deletions.
 void BinarySearchTree::remove(const std::string& word) {
    DeleteNode(root, word);
 }
 
+// search method. Returns the Node that has the word in it.
 Node* BinarySearchTree::search(const std::string& word) {
     Node *currentNode = root;
     while (currentNode)
@@ -85,6 +92,8 @@ Node* BinarySearchTree::search(const std::string& word) {
     }
     return nullptr;
 }
+
+// a function to find the Max element of a subtree.
 Node *BinarySearchTree::findMaxOfSubtree(Node *n) {
     if(n == nullptr)
         return nullptr;
@@ -94,6 +103,7 @@ Node *BinarySearchTree::findMaxOfSubtree(Node *n) {
         return findMaxOfSubtree(n->rightChild);
 }
 
+// The three order methods
 void BinarySearchTree::PreOrder(Node *t) {
     if (t) {
         Output(t);
@@ -121,6 +131,7 @@ void BinarySearchTree::InOrder(Node *t) {
     }
 }
 
+// a function to get the root of the tree.
 Node *BinarySearchTree::getRoot() {
     return root;
 }

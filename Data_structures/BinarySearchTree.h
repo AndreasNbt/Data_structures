@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 
-
+//Node for the tree data.
 struct Node {
     Node *leftChild;
     Node *rightChild;
@@ -16,6 +16,7 @@ struct Node {
 
 class BinarySearchTree {
 
+    //Binary Search Tree has 2 private methods, insert and delete a specific node.
 private:
     Node* InsertNode(Node *n, const std::string &word);
     Node* DeleteNode(Node *n, const std::string &word);
@@ -32,7 +33,7 @@ public:
     virtual void remove(const std::string& word);
     Node* search(const std::string& word);
 
-
+    //The three order methods
     void PreOrder(Node *t);
     void PostOrder(Node *t);
     void InOrder(Node *t);
