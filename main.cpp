@@ -12,7 +12,6 @@
 #include "Timer.h"
 
 
-
 //this is the method we use to lowercase every character in the text and remove the special characters from it to make our word counting easier.
 std::string Erase(std::string word)
 {
@@ -21,9 +20,10 @@ std::string Erase(std::string word)
     return word;
 }
 
+void print2D(Node *root);
+
 int main()
 {
-
     std::ifstream file1, file2, file3, file4, file5;
     std::string word, filename;
     filename = "text.txt";
@@ -100,7 +100,7 @@ int main()
         while (file4 >> word) {
             word = Erase(word);
             if (word.empty()) continue;
-            //avl.insert(word);
+            avl.insert(word);
         }
         timer.stop();
         std::cout << "AVL Tree\n";

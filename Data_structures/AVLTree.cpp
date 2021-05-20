@@ -3,16 +3,37 @@
 
 AVLTree::AVLTree() : BinarySearchTree() {}
 
+void print2DUtil(Node *root, int space)
+{
+    if (root == nullptr)
+        return;
+    space += 10;
+    print2DUtil(root->rightChild, space);
+
+    std::cout<<std::endl;
+    for (int i = 10; i < space; i++)
+        std::cout<<" ";
+    std::cout<<root->data<<"\n";
+
+    print2DUtil(root->leftChild, space);
+}
+
+void print2D(Node *root)
+{
+    print2DUtil(root, 0);
+}
+
+
 Node* AVLTree::InsertAndBalance(Node *n, const std::string &word) {
     if (!n) {
         n = new Node(word);
         return n;
     } else if (word< n->data) {
         n->leftChild = InsertAndBalance(n->leftChild, word);
-        n = balanceTree(n);
-    } else if (word >= n->data) {
+        n = balanceTree(n, word);
+    } else if (word > n->data) {
         n->rightChild = InsertAndBalance(n->rightChild, word);
-        n = balanceTree(n);
+        n = balanceTree(n, word);
     } else if (word == n->data) {
         n->count++;
     }
@@ -22,10 +43,10 @@ Node* AVLTree::InsertAndBalance(Node *n, const std::string &word) {
 
 void AVLTree::insert(const std::string &word) {
     root = InsertAndBalance(root, word);
+
 }
 
 Node *AVLTree::DeleteAndBalance(Node *n, const std::string &word) {
-
     if (!n)
         return n;
 
@@ -64,7 +85,7 @@ Node *AVLTree::DeleteAndBalance(Node *n, const std::string &word) {
     if (!n)
         return n;
 
-    n = balanceTree(n);
+    n = balanceTree(n, word);
 
     return n;
 
@@ -76,38 +97,33 @@ Node *AVLTree::DeleteAndBalance(Node *n, const std::string &word) {
 }
 
 int AVLTree::height(Node *n) {
-    int h = 0;
-    if (n != nullptr) {
-        int l_height = height(n->leftChild);
-        int r_height = height(n->rightChild);
-        h += l_height > r_height ? l_height : r_height;
-        h += 1;
-    }
-    return h;
-}
-
-int AVLTree::heightDiff(Node *n) {
-    int l_height = height(n->leftChild);
-    int r_height = height(n->rightChild);
-    return l_height - r_height;
+    return (n != nullptr ? n->height : 0 );
 }
 
 
+Node *AVLTree::balanceTree(Node *n, const std::string& word) {
 
-Node *AVLTree::balanceTree(Node *n) {
-    int balanceFactor = heightDiff(n);
+    if (height(n->leftChild) > height(n->rightChild))
+        n->height = height(n->leftChild) + 1;
+    else
+        n->height = height(n->rightChild) + 1;
+
+
+    int balanceFactor = height(n->leftChild) - height(n->rightChild);
+
+
     if (balanceFactor > 1) {
-        if (heightDiff(n->leftChild) > 0) {
+        if (word < n->leftChild->data) {
             n = R(n);
         }
-        else {
+        else if (word > n->leftChild->data) {
             n = LR(n);
         }
     } else if (balanceFactor < -1) {
-        if (heightDiff(n->rightChild) > 0) {
+        if (word < n->rightChild->data ) {
             n = RL(n);
         }
-        else {
+        else if (word > n->rightChild->data) {
             n = L(n);
         }
     }
@@ -119,6 +135,16 @@ Node *AVLTree::R(Node *parent) {
     t = parent->leftChild;
     parent->leftChild = t->rightChild;
     t->rightChild = parent;
+
+    if (height(parent->leftChild) > height(parent->rightChild))
+        parent->height = height(parent->leftChild) + 1;
+    else
+        parent->height = height(parent->rightChild) + 1;
+
+    if (height(t->leftChild) > height(t->rightChild))
+        t->height = height(t->leftChild) + 1;
+    else
+        t->height = height(t->rightChild) + 1;
     return t;
 }
 
@@ -127,6 +153,16 @@ Node *AVLTree::L(Node *parent) {
     t = parent->rightChild;
     parent->rightChild = t->leftChild;
     t->leftChild = parent;
+
+    if (height(parent->leftChild) > height(parent->rightChild))
+        parent->height = height(parent->leftChild) + 1;
+    else
+        parent->height = height(parent->rightChild) + 1;
+
+    if (height(t->leftChild) > height(t->rightChild))
+        t->height = height(t->leftChild) + 1;
+    else
+        t->height = height(t->rightChild) + 1;
     return t;
 }
 
@@ -145,7 +181,7 @@ Node *AVLTree::RL(Node *parent) {
 }
 
 void AVLTree::Output(Node *t) {
-    std::cout << t->data << " " << t->count << " " << height(t) << std::endl;
+    std::cout << t->data << " " << t->count << " " << t->height << std::endl;
 }
 
 
