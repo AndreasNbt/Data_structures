@@ -4,6 +4,7 @@
 // array constructor.
 array::array(int size)
 {
+    this->size = size;
     words = new std::string[size];
     wordCounter = new int[size];
     length = 0;
@@ -22,17 +23,18 @@ int array::search(const std::string &word) const
 
 // using the search function, if the word is not in the array we add it,
 // if the word is already in the array we just increase the counter of this word.
+// Also, if the array is full, we increase its size calling the resize function.
 void array::insert(const std::string &word)
 {
+    if (length >= size)
+        resize();
+
     int index = search(word);
-    if (index == -1)
-    {
+    if (index == -1) {
         words[length] = word;
         wordCounter[length] = 1;
         length++;
-    }
-    else
-    {
+    } else {
         wordCounter[index]++;
     }
 }
@@ -53,6 +55,32 @@ void array::remove(const std::string &word)
     }
 }
 
+// function that increases the size of the array if it is full.
+// It creates two temporary arrays temp and temp2 and stores the previous data in them
+// Then, it deletes the old arrays and recreates them with double the size.
+// And, using std::copy the data is copies from one array to another.
+void array::resize() {
+
+    auto *temp = new std::string[size];
+    auto *temp2 = new int[size];
+
+    std::copy(words,words + size, temp);
+    std::copy(wordCounter, wordCounter+size, temp2);
+
+    delete[] words;
+    delete[] wordCounter;
+
+    size *= 2;
+
+    words = new std::string[size];
+    wordCounter = new int[size];
+
+    std::copy(temp, temp+ size/2, words);
+    std::copy(temp2, temp2 + size/2, wordCounter);
+
+
+}
+
 // a function to print the words and how many times they are found in the text.
 void array::display() {
     for (int i=0;i<length;i++)
@@ -63,5 +91,4 @@ void array::display() {
 std::string &array::operator[](int index) {
     return words[index];
 }
-
 

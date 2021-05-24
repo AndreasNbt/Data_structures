@@ -24,6 +24,19 @@ void print2D(Node *root);
 
 int main()
 {
+
+    sorted_array a(10);
+
+    for (int i = 0; i<180; i++)
+    {
+        std::stringstream  ss;
+        ss << i;
+        std::string str = ss.str();
+        a.insert(str);
+    }
+
+
+    /*
     std::ifstream file1, file2, file3, file4, file5;
     std::string word, filename;
     filename = "text.txt";
@@ -133,7 +146,7 @@ int main()
     }
     file5.close();
 
-
+*/
 
     return 0;
 }

@@ -31,6 +31,10 @@ int sorted_array::search(const std::string &word) {
 // if the word is not in the array we add it on the right position in the array (ascending order),
 // if the word is already in the array we just increase the counter of this word.
 void sorted_array::insert(const std::string &word) {
+
+    if (length >= size)
+        resize();
+
     int index = search(word);
     if (index == -1) {
         if (words[m_SearchIndex] < word)

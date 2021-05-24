@@ -5,10 +5,11 @@
 
 class array {
     protected:
+        int size;
         std::string *words;
         int *wordCounter;
         long length;
-
+        void resize();
     public:
         array() = delete;
         explicit array(int size);
@@ -17,6 +18,7 @@ class array {
         virtual void remove(const std::string &word);
         virtual int search(const std::string &word) const;
         std::string& operator[](int index);
+
         void display();
 };
 
