@@ -4,7 +4,7 @@
 // array constructor.
 array::array()
 {
-    size = 100;
+    size = 10000;
     words = new std::string[size];
     wordCounter = new int[size];
     length = 0;

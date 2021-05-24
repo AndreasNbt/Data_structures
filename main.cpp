@@ -16,16 +16,18 @@
 std::string Erase(std::string word)
 {
     std::transform(word.begin(), word.end(),word.begin(), ::tolower);
-    word.erase(remove_if(word.begin(), word.end(), [](char c) {return (c == '='  || c == '"' || c == '!' || c == '@' || c == '#' || c == '$' || c == '%' || c == '^' || c == '&' || c == '*' || c == '(' || c == ')' || c == '-' || c == '_' || c == '{' || c == '}' || c == '[' || c == ']' || c == '|' || c == ';' || c == ':' || c == '<' || c == '>' || c == '?' || c == '/' || c == ',' || c == '.' || c == '\'' || c == '~'); }), word.end());
+    word.erase(remove_if(word.begin(), word.end(), [](char c) {return (c == '='  || c == '"' || c == '!' || c == '@' || c == '#' || c == '$' || c == '%' || c == '^' || c == '&' || c == '*' || c == '(' || c == ')' || c == '-' || c == '_' || c == '{' || c == '}' || c == '[' || c == ']' || c == '|' || c == ';' || c == ':' || c == '<' || c == '>' || c == '?' || c == '/' || c == ',' || c == '.' || c == '\'' || c == '~' || c=='1'
+    || c=='2' ||c=='3' || c=='4' || c=='5' || c=='6' || c=='7' || c=='8' || c=='9' ||c=='0'); }), word.end());
     return word;
 }
 
 
 int main()
 {
+
     std::ifstream file1, file2, file3, file4, file5;
     std::string word, filename;
-    filename = "text.txt";
+    filename = "temp.txt";
     Timer timer;
 
     array arr;
@@ -131,6 +133,7 @@ int main()
         return 1;
     }
     file5.close();
+
 
     return 0;
 }

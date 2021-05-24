@@ -2,7 +2,7 @@
 #include "HashTable.h"
 
 HashTable::HashTable()  {
-    this->size = 101;
+    this->size = 10069;
     length = 0;
     hashTable = new HashNode[size];
 }
@@ -11,18 +11,19 @@ HashTable::~HashTable() {
     delete[] hashTable;
 }
 
-int HashTable::HashFunc(const std::string &word) const {
-
-    size_t len = word.length();
-    int key = 0;
-
-    for (int j=0;j<len;j++)
-        key += word[j];
-    key = abs(key) % size;
-
+// Polynomial rolling hash function
+unsigned long long HashTable::HashFunc(const std::string &word) {
+    const int p = 31;
+    const int m = 1e9 + 9;
+    long long key = 0;
+    long long p_pow = 1;
+    for (char c : word) {
+        key = (key + (c - 'a' + 1) * p_pow) % m;
+        p_pow = (p_pow * p) % m;
+    }
     return key;
-
 }
+
 
 
 void HashTable::insert(const std::string &word) {
@@ -31,7 +32,8 @@ void HashTable::insert(const std::string &word) {
         resize();
 
     int i=1;
-    int location = HashFunc(word);
+    unsigned long long key  = HashFunc(word);
+    unsigned int location = key % size;
 
 
     for (int j = 0; j < size; j++)
@@ -75,7 +77,8 @@ void HashTable::resize() {
 
 bool HashTable::search(const std::string &word) {
     int i = 1;
-    int location = HashFunc(word);
+    unsigned long long key = HashFunc(word);
+    unsigned int location = key % size;
 
     for (int j = 0; j < size; j++)
     {

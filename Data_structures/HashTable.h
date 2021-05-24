@@ -19,7 +19,7 @@ private:
     HashNode *hashTable;
     int size;
     int length;
-    int HashFunc(const std::string &word) const;
+    static unsigned long long HashFunc(const std::string &word) ;
     static int findNextPrime(int n);
     void resize();
 
