@@ -9,11 +9,10 @@ class sorted_array: public array{
     // Also it inherits 2 public methods from the base class (array class): the [] operator overloading and the display() function.
     // Finally it has it's own 3 methods for insertion, deletion & searching.
 private:
-    int m_SearchIndex;
+    int m_SearchIndex{};
 
 public:
-    sorted_array() = delete;
-    explicit sorted_array(int size);
+    sorted_array();
 
     void insert(const std::string &word) override;
     void remove(const std::string &word) override;

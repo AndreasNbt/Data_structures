@@ -11,9 +11,7 @@ class array {
         long length;
         void resize();
     public:
-        array() = delete;
-        explicit array(int size);
-
+        array();
         virtual void insert(const std::string &word);
         virtual void remove(const std::string &word);
         virtual int search(const std::string &word) const;

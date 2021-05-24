@@ -3,7 +3,7 @@
 
 // sorted array constructor.
 // We benefit from the base class (array class) and we are using it's constructor for the sorted array constructor.
-sorted_array::sorted_array(int size): array(size) {}
+sorted_array::sorted_array(): array() {}
 
 // search function, we use the binary search method to find the given word.
 int sorted_array::search(const std::string &word) {

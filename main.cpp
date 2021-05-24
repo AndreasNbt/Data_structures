@@ -20,33 +20,19 @@ std::string Erase(std::string word)
     return word;
 }
 
-void print2D(Node *root);
 
 int main()
 {
-
-    sorted_array a(10);
-
-    for (int i = 0; i<180; i++)
-    {
-        std::stringstream  ss;
-        ss << i;
-        std::string str = ss.str();
-        a.insert(str);
-    }
-
-
-    /*
     std::ifstream file1, file2, file3, file4, file5;
     std::string word, filename;
     filename = "text.txt";
     Timer timer;
 
-    array arr(251352);
-    sorted_array sarr(251352);
+    array arr;
+    sorted_array sarr;
     BinarySearchTree btree;
     AVLTree avl;
-    HashTable hash(251352);
+    HashTable hash;
 
     file1.open(filename);
     if (file1.is_open()) {
@@ -145,8 +131,6 @@ int main()
         return 1;
     }
     file5.close();
-
-*/
 
     return 0;
 }

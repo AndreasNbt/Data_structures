@@ -2,9 +2,9 @@
 #include <iostream>
 
 // array constructor.
-array::array(int size)
+array::array()
 {
-    this->size = size;
+    size = 100;
     words = new std::string[size];
     wordCounter = new int[size];
     length = 0;

@@ -1,7 +1,7 @@
 #ifndef DATA_STRUCTURES_HASHTABLE_H
 #define DATA_STRUCTURES_HASHTABLE_H
-#define C1 5
-#define C2 7
+#define C1 99
+#define C2 107
 
 #include <string>
 #include <utility>
@@ -18,14 +18,17 @@ class HashTable {
 private:
     HashNode *hashTable;
     int size;
-    static int HashFunc(const std::string &word, int i);
+    int length;
+    int HashFunc(const std::string &word) const;
+    static int findNextPrime(int n);
+    void resize();
 
 public:
-    explicit HashTable(int size);
+
+    explicit HashTable();
     ~HashTable();
     void insert(const std::string &word);
     bool search(const std::string &word);
-    void Print();
 };
 
 
