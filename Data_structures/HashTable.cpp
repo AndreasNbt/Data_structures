@@ -100,17 +100,15 @@ int HashTable::search(const std::string &word) {
 
         hashTable = new HashNode[size];
 
-        for (int i=0;i<tempSize;i++)
-        {
+        for (int i=0;i<tempSize;i++) {
             if (!temp[i].word.empty()) {
                 insert(temp[i].word);
                 hashTable[tempLoc].count = temp[i].count;
             }
-
         }
 
-
-    }
+        delete[] temp;
+   }
 
     int HashTable::findNextPrime(int n) {
         for (int i = n;; i++) {
