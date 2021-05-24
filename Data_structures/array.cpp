@@ -11,14 +11,27 @@ array::array()
 }
 
 // ordering search for the array.
-int array::search(const std::string &word) const
+int array::find(const std::string &word)
 {
     for (int i=0;i<length;i++)
     {
-        if (word == words[i])
+        if (word == words[i]) {
             return i;
+        }
+
     }
     return -1;
+}
+
+int array::search(const std::string &word)  {
+    int index = find(word);
+
+    if (index == -1)
+        return 0;
+    else
+    {
+        return wordCounter[index];
+    }
 }
 
 // using the search function, if the word is not in the array we add it,
@@ -29,7 +42,7 @@ void array::insert(const std::string &word)
     if (length >= size)
         resize();
 
-    int index = search(word);
+    int index = find(word);
     if (index == -1) {
         words[length] = word;
         wordCounter[length] = 1;
@@ -42,7 +55,7 @@ void array::insert(const std::string &word)
 // using the search function, if we find the given word we delete it from the array.
 void array::remove(const std::string &word)
 {
-    int index = search(word);
+    int index = find(word);
     if (index == -1)
         return;
     else
@@ -78,6 +91,8 @@ void array::resize() {
     std::copy(temp, temp+ size/2, words);
     std::copy(temp2, temp2 + size/2, wordCounter);
 
+    delete[] temp;
+    delete[] temp2;
 
 }
 
@@ -91,4 +106,6 @@ void array::display() {
 std::string &array::operator[](int index) {
     return words[index];
 }
+
+
 

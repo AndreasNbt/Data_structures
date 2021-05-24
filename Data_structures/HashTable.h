@@ -1,13 +1,17 @@
 #ifndef DATA_STRUCTURES_HASHTABLE_H
 #define DATA_STRUCTURES_HASHTABLE_H
-#define C1 99
-#define C2 107
+#define C1 197
+#define C2 307
 
 #include <string>
 #include <utility>
 #include <array>
 
 struct HashNode {
+private:
+    void setCount(int c) { this->count = c;}
+
+public:
     std::string word;
     int count{};
     HashNode() = default;
@@ -16,6 +20,7 @@ struct HashNode {
 class HashTable {
 
 private:
+    unsigned int tempLoc{};
     HashNode *hashTable;
     int size;
     int length;
@@ -28,7 +33,7 @@ public:
     explicit HashTable();
     ~HashTable();
     void insert(const std::string &word);
-    bool search(const std::string &word);
+    int search(const std::string &word);
 };
 
 

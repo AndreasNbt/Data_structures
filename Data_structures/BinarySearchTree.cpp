@@ -78,19 +78,20 @@ void BinarySearchTree::remove(const std::string& word) {
    DeleteNode(root, word);
 }
 
-// search method. Returns the Node that has the word in it.
-Node* BinarySearchTree::search(const std::string& word) {
+// search method. Returns the number of appearances of the word
+int BinarySearchTree::search(const std::string& word) {
     Node *currentNode = root;
     while (currentNode)
     {
-        if (word == currentNode->data)
-            return currentNode;
+        if (word == currentNode->data) {
+            return currentNode->count;
+        }
         else if (word < currentNode->data)
             currentNode = currentNode->leftChild;
         else
             currentNode = currentNode->rightChild;
     }
-    return nullptr;
+    return 0;
 }
 
 // a function to find the Max element of a subtree.

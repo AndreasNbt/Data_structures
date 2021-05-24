@@ -14,6 +14,6 @@ void Timer::stop() {
 }
 
 double Timer::getDuration() {
-    auto dur = (double)std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime).count() / 1000;
-    return dur;
+    auto time = endTime - startTime;
+    return time / std::chrono::microseconds (1);
 }

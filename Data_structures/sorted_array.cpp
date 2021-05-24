@@ -6,7 +6,7 @@
 sorted_array::sorted_array(): array() {}
 
 // search function, we use the binary search method to find the given word.
-int sorted_array::search(const std::string &word) {
+int sorted_array::find(const std::string &word) {
 
     int start = 0;
     int end = length;
@@ -35,7 +35,7 @@ void sorted_array::insert(const std::string &word) {
     if (length >= size)
         resize();
 
-    int index = search(word);
+    int index = find(word);
     if (index == -1) {
         if (words[m_SearchIndex] < word)
             m_SearchIndex++;
@@ -55,7 +55,7 @@ void sorted_array::insert(const std::string &word) {
 
 // using the search function, if we find the given word we delete it from the array.
 void sorted_array::remove(const std::string &word) {
-    int index = search(word);
+    int index = find(word);
     if (index == -1)
         return;
     else

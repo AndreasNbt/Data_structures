@@ -16,7 +16,7 @@ public:
 
     void insert(const std::string &word) override;
     void remove(const std::string &word) override;
-    int search(const std::string &word);
+    int find(const std::string &word) override;
 };
 
 #endif //DATA_STRUCTURES_SORTED_ARRAY_H

@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <sstream>
 #include <chrono>
+#include <random>
 
 #include "Data_structures/array.h"
 #include "Data_structures/sorted_array.h"
@@ -25,7 +26,7 @@ std::string Erase(std::string word)
 int main()
 {
 
-    std::ifstream file1, file2, file3, file4, file5;
+    std::ifstream file, fil1;
     std::string word, filename;
     filename = "temp.txt";
     Timer timer;
@@ -36,104 +37,109 @@ int main()
     AVLTree avl;
     HashTable hash;
 
-    file1.open(filename);
-    if (file1.is_open()) {
-        timer.start();
-        while (file1 >> word) {
+    int words_count = 0;
+
+    timer.start();
+    file.open(filename);
+    if (file.is_open()) { // the insertions in all the data structures happen
+        while (file >> word) {
             word = Erase(word);
             if (word.empty()) continue;
             arr.insert(word);
-        }
-        timer.stop();
-        std::cout << "Unsorted Array" << std::endl;
-        std::cout << "Insertions took " << timer.getDuration() << " seconds.\n";
-        std::cout << "--------------\n";
-    }
-    else {
-        std::cerr << "Couldn't open file.\n";
-        return 1;
-    }
-    file1.close();
-
-    file2.open(filename);
-    if (file2.is_open()) {
-        timer.start();
-        while (file2 >> word) {
-            word = Erase(word);
-            if (word.empty()) continue;
             sarr.insert(word);
-        }
-        timer.stop();
-        std::cout << "Sorted Array" << std::endl;
-        std::cout << "Insertions took " << timer.getDuration() << " seconds.\n";
-        std::cout << "--------------\n";
-    }
-    else {
-        std::cerr << "Couldn't open file.\n";
-        return 1;
-    }
-    file2.close();
-
-
-    file3.open(filename);
-    if (file3.is_open()) {
-        timer.start();
-        while (file3 >> word) {
-            word = Erase(word);
-            if (word.empty()) continue;
             btree.insert(word);
-        }
-        timer.stop();
-        std::cout << "Binary Search Tree\n";
-        std::cout << "Insertions took " << timer.getDuration() << " seconds.\n";
-        std::cout << "--------------\n";
-    }
-    else {
-        std::cerr << "Couldn't open file.\n";
-        return 1;
-    }
-    file3.close();
-
-
-    file4.open(filename);
-    if (file4.is_open()) {
-        timer.start();
-        while (file4 >> word) {
-            word = Erase(word);
-            if (word.empty()) continue;
             avl.insert(word);
+            hash.insert(word);
+            words_count++;
         }
-        timer.stop();
-        std::cout << "AVL Tree\n";
-        std::cout << "Insertions took " << timer.getDuration() << " seconds.\n";
-        std::cout << "--------------\n";
     }
-    else {
-        std::cerr << "Couldn't open file.\n";
-        return 1;
-    }
-    file4.close();
+    else
+        std::cout << "Couldn't open file.";
 
+    file.close();
+    file.clear();
 
-    file5.open(filename);
-    if (file5.is_open()) {
-        timer.start();
-        while (file5 >> word) {
+    auto *words = new std::string[words_count]; //temporary array in which all the words will be stored, so 1000 random ones can be selected.
+
+    int count = 0;
+    file.open(filename);
+    if (file.is_open()) {
+        while (file >> word) {
             word = Erase(word);
             if (word.empty()) continue;
-            hash.insert(word);
+            words[count] = word;
+            count++;
         }
-        timer.stop();
-        std::cout << "HashTable\n";
-        std::cout << "Insertions took " << timer.getDuration() << " seconds.\n";
-        std::cout << "--------------\n";
     }
-    else {
-        std::cerr << "Couldn't open file.\n";
-        return 1;
-    }
-    file5.close();
+    else
+        std::cout << "Couldn't open file.";
 
+
+    std::string Q[1000]; // Q array which will contain the randomly chosen 1000 words.
+
+
+    std::random_device dev;
+    std::mt19937 rng(dev());
+    std::uniform_int_distribution<std::mt19937::result_type> dist6(0,words_count);
+
+    for (auto & i : Q) {
+        unsigned int num = dist6(rng);
+        i = words[num];
+    }
+
+    std::cout << "Unsorted Array Results\n";
+    std::cout << "-----------------------\n";
+    timer.start();
+    for (auto &i: Q) {
+        int c = arr.search(i);
+        //std::cout << "The word " << i << " appears " << c << " times.\n";
+    }
+    timer.stop();
+    std::cout << "Searching in Unsorted array took: " << timer.getDuration() << " microseconds.\n\n";
+
+
+    std::cout << "Sorted Array Results\n";
+    std::cout << "-----------------------\n";
+    timer.start();
+    for (auto &i: Q) {
+        int c = sarr.search(i);
+        //std::cout << "The word " << i << " appears " << c << " times.\n";
+    }
+    timer.stop();
+    std::cout << "Searching in Sorted array took: " << timer.getDuration() << " microseconds.\n\n";
+
+
+    std::cout << "Binary Search Tree Results\n";
+    std::cout << "-----------------------\n";
+    timer.start();
+    for (auto &i: Q) {
+        int c = btree.search(i);
+        //std::cout << "The word " << i << " appears " << c << " times.\n";
+    }
+    timer.stop();
+    std::cout << "Searching in Binary Search Tree took: " << timer.getDuration() << " microseconds.\n\n";
+
+
+    std::cout << "AVL Tree Results\n";
+    std::cout << "-----------------------\n";
+    timer.start();
+    for (auto &i: Q) {
+        int c = avl.search(i);
+        //std::cout << "The word " << i << " appears " << c << " times.\n";
+    }
+    timer.stop();
+    std::cout << "Searching in AVL Tree took: " << timer.getDuration() << " microseconds.\n\n";
+
+
+    std::cout << "HashTable Results\n";
+    std::cout << "-----------------------\n";
+    timer.start();
+    for (auto &i: Q) {
+        int c = hash.search(i);
+        //std::cout << "The word " << i << " appears " << c << " times.\n";
+    }
+    timer.stop();
+    std::cout << "Searching in HashTable took: " << timer.getDuration() << " microseconds.\n";
 
     return 0;
 }

@@ -32,7 +32,7 @@ public:
     BinarySearchTree();
     virtual void insert(const std::string& word);
     virtual void remove(const std::string& word);
-    Node* search(const std::string& word);
+    int search(const std::string& word);
 
     //The three order methods
     void PreOrder(Node *t);

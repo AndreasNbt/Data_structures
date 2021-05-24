@@ -21,6 +21,8 @@ unsigned long long HashTable::HashFunc(const std::string &word) {
         key = (key + (c - 'a' + 1) * p_pow) % m;
         p_pow = (p_pow * p) % m;
     }
+
+
     return key;
 }
 
@@ -44,6 +46,7 @@ void HashTable::insert(const std::string &word) {
         }
         else if (hashTable[location].word.empty())
         {
+            tempLoc = location;
             hashTable[location].word = word;
             hashTable[location].count = 1;
             length++;
@@ -57,60 +60,67 @@ void HashTable::insert(const std::string &word) {
     }
 }
 
-// function that increases the size of the hashtable if it's 3/4 are filled.
-// At first its current size is doubled and then we find the first prime number that comes after it.
-void HashTable::resize() {
+int HashTable::search(const std::string &word) {
 
-    auto *temp = new HashNode[size];
-
-    std::copy(hashTable,hashTable + size, temp);
-
-    delete[] hashTable;
-
-    int tempSize = size;
-    size = findNextPrime(size*2);
-
-    hashTable = new HashNode[size];
-    std::copy(temp, temp + tempSize, hashTable);
-
-}
-
-bool HashTable::search(const std::string &word) {
     int i = 1;
     unsigned long long key = HashFunc(word);
     unsigned int location = key % size;
 
-    for (int j = 0; j < size; j++)
-    {
+    for (int j = 0; j < size; j++) {
         if (hashTable[location].word == word) {
-            std::cout << "The word " << word << " appears " << hashTable[location].count << " times.";
-            return true;
-        }
-        else if (hashTable[location].word.empty())
+            return hashTable[location].count;
+        } else if (hashTable[location].word.empty()) {
+            return 0;
+        } else if (hashTable[location].word != word) //collision
         {
-            return false;
-        }
-        else if (hashTable[location].word != word) //collision
-        {
-            location = (location + C1*i*i + C2*i*i) % size;
+            location = (location + C1 * i * i + C2 * i * i) % size;
             i++;
         }
     }
-    return false;
+    return 0;
 }
 
+// function that increases the size of the hashtable if it's 3/4 are filled.
+// At first its current size is doubled and then we find the first prime number that comes after it.
+    void HashTable::resize() {
 
-int HashTable::findNextPrime(int n) {
-    for (int i=n;; i++) {
-        bool flag = true;
-        for (int j = 2; j <= i / 2; j++)
-            if (i % j == 0)
-                flag = false;
-        if (flag) return i;
+        auto *temp = new HashNode[size];
+
+
+        for (int i=0;i<size;i++)
+        {
+            temp[i].word = hashTable[i].word;
+            temp[i].count = hashTable[i].count;
+        }
+
+        delete[] hashTable;
+
+        int tempSize = size;
+        size = findNextPrime(size * 2);
+
+        hashTable = new HashNode[size];
+
+        for (int i=0;i<tempSize;i++)
+        {
+            if (!temp[i].word.empty()) {
+                insert(temp[i].word);
+                hashTable[tempLoc].count = temp[i].count;
+            }
+
+        }
+
+
     }
-}
 
-
+    int HashTable::findNextPrime(int n) {
+        for (int i = n;; i++) {
+            bool flag = true;
+            for (int j = 2; j <= i / 2; j++)
+                if (i % j == 0)
+                    flag = false;
+            if (flag) return i;
+        }
+    }
 
 
 
