@@ -10,13 +10,13 @@ class sorted_array: public array{
     // Finally it has it's own 3 methods for insertion, deletion & searching.
 private:
     int m_SearchIndex{};
+    int find(const std::string &word) override;
 
 public:
     sorted_array();
-
     void insert(const std::string &word) override;
     void remove(const std::string &word) override;
-    int find(const std::string &word) override;
+
 };
 
 #endif //DATA_STRUCTURES_SORTED_ARRAY_H

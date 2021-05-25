@@ -5,19 +5,18 @@
 
 class array {
     protected:
-        int size;
         std::string *words;
         int *wordCounter;
         long length;
+        long size;
         void resize();
+        virtual int find(const std::string &word);
     public:
         array();
+        int search(const std::string &word);
         virtual void insert(const std::string &word);
         virtual void remove(const std::string &word);
-        virtual int find(const std::string &word);
-        int search(const std::string &word);
         std::string& operator[](int index);
-
         void display();
 };
 

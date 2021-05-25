@@ -54,7 +54,7 @@ void HashTable::insert(const std::string &word) {
         }
         else if (hashTable[location].word != word) //collision
         {
-            location = (location + C1*i*i + C2*i*i) % size;
+            location = (location + C1*i*i + C2*i*i) % size; //Quadratic probing
             i++;
         }
     }
