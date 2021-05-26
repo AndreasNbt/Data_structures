@@ -12,7 +12,7 @@
 
 
 // this is the method we use to lowercase every character in the text
-// and remove the special characters from it to make our word counting easier.
+// and remove the special characters from it to make our word counting easier
 std::string Erase(std::string word)
 {
     for(int i=0;i<word.size();i++)    // a for loop for the word length
