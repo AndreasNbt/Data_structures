@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <algorithm>
+#include <algorithm> // well...
 #include <sstream>
 #include <chrono>
 #include <random>
@@ -16,9 +16,14 @@
 //this is the method we use to lowercase every character in the text and remove the special characters from it to make our word counting easier.
 std::string Erase(std::string word)
 {
-    std::transform(word.begin(), word.end(),word.begin(), ::tolower);
-    word.erase(remove_if(word.begin(), word.end(), [](char c) {return (c == '='  || c == '"' || c == '!' || c == '@' || c == '#' || c == '$' || c == '%' || c == '^' || c == '&' || c == '*' || c == '(' || c == ')' || c == '-' || c == '_' || c == '{' || c == '}' || c == '[' || c == ']' || c == '|' || c == ';' || c == ':' || c == '<' || c == '>' || c == '?' || c == '/' || c == ',' || c == '.' || c == '\'' || c == '~' || c=='1'
-    || c=='2' ||c=='3' || c=='4' || c=='5' || c=='6' || c=='7' || c=='8' || c=='9' || c=='0'); }), word.end());
+    for(int i=0;i<word.size()-1;i++)    // a for loop for the word length
+    {
+        if(word[i]>='A' && word[i]<='Z')
+            word[i] -= 32; // to lowercase
+        // removing special characters
+        if(word[i] == '='  || word[i] == '"' || word[i] == '!' || word[i] == '@' || word[i] == '#' || word[i] == '$' || word[i] == '%' || word[i] == '^' || word[i] == '&' || word[i] == '*' || word[i] == '(' || word[i] == ')' || word[i] == '-' || word[i] == '_' || word[i] == '{' || word[i] == '}' || word[i] == '[' || word[i] == ']' || word[i] == '|' || word[i] == ';' || word[i] == ':' || word[i] == '<' || word[i] == '>' || word[i] == '?' || word[i] == '/' || word[i] == ',' || word[i] == '.' || word[i] == '\'' || word[i] == '~')
+            word[i] = ' ';
+    }
     return word;
 }
 
