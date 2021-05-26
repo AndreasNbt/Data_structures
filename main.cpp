@@ -15,22 +15,15 @@
 //this is the method we use to lowercase every character in the text and remove the special characters from it to make our word counting easier.
 std::string Erase(std::string word)
 {
-    char *temp;
-    int counter=0;
     for(int i=0;i<word.size();i++)    // a for loop for the word length
     {
         if(word[i]>='A' && word[i]<='Z')
             word[i] -= 32; // to lowercase
         // removing special characters
-        if(word[i] == '='  || word[i] == '"' || word[i] == '!' || word[i] == '@' || word[i] == '#' || word[i] == '$' || word[i] == '%' || word[i] == '^' || word[i] == '&' || word[i] == '*' || word[i] == '(' || word[i] == ')' || word[i] == '-' || word[i] == '_' || word[i] == '{' || word[i] == '}' || word[i] == '[' || word[i] == ']' || word[i] == '|' || word[i] == ';' || word[i] == ':' || word[i] == '<' || word[i] == '>' || word[i] == '?' || word[i] == '/' || word[i] == ',' || word[i] == '.' || word[i] == '\'' || word[i] == '~' || word[i] == '\t')
-        {
-            for(int j=i;j<word.size();j++)
-                word[j]=word[j+1];
-            counter++;
-        }
+        if(word[i] == '='  || word[i] == '"' || word[i] == '!' || word[i] == '@' || word[i] == '#' || word[i] == '$' || word[i] == '%' || word[i] == '^' || word[i] == '&' || word[i] == '*' || word[i] == '(' || word[i] == ')' || word[i] == '-' || word[i] == '_' || word[i] == '{' || word[i] == '}' || word[i] == '[' || word[i] == ']' || word[i] == '|' || word[i] == ';' || word[i] == ':' || word[i] == '<' || word[i] == '>' || word[i] == '?' || word[i] == '/' || word[i] == ',' || word[i] == '.' || word[i] == '\'' || word[i] == '~')
+            word.erase(i, 1);
     }
-    temp = new char[word.size()-counter];
-    return temp;
+    return word;
 }
 
 
