@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <chrono>
 #include <random>
 
 #include "Data_structures/array.h"
