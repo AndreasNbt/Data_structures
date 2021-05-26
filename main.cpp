@@ -11,15 +11,16 @@
 #include "Timer.h"
 
 
-//this is the method we use to lowercase every character in the text and remove the special characters from it to make our word counting easier.
+// this is the method we use to lowercase every character in the text
+// and remove the special characters from it to make our word counting easier
 std::string Erase(std::string word)
 {
     for(int i=0;i<word.size();i++)    // a for loop for the word length
     {
         if(word[i]>='A' && word[i]<='Z')
-            word[i] -= 32; // to lowercase
+            word[i] -= 32; // lowercasing
         // removing special characters
-        if(word[i] == '='  || word[i] == '"' || word[i] == '!' || word[i] == '@' || word[i] == '#' || word[i] == '$' || word[i] == '%' || word[i] == '^' || word[i] == '&' || word[i] == '*' || word[i] == '(' || word[i] == ')' || word[i] == '-' || word[i] == '_' || word[i] == '{' || word[i] == '}' || word[i] == '[' || word[i] == ']' || word[i] == '|' || word[i] == ';' || word[i] == ':' || word[i] == '<' || word[i] == '>' || word[i] == '?' || word[i] == '/' || word[i] == ',' || word[i] == '.' || word[i] == '\'' || word[i] == '~')
+        if(word[i] == '='  || word[i] == '"' || word[i] == '!' || word[i] == '@' || word[i] == '#' || word[i] == '$' || word[i] == '%' || word[i] == '^' || word[i] == '&' || word[i] == '*' || word[i] == '(' || word[i] == ')' || word[i] == '-' || word[i] == '_' || word[i] == '{' || word[i] == '}' || word[i] == '[' || word[i] == ']' || word[i] == '|' || word[i] == ';' || word[i] == ':' || word[i] == '<' || word[i] == '>' || word[i] == '?' || word[i] == '/' || word[i] == ',' || word[i] == '.' || word[i] == '\'' || word[i] == '~' || word[i] == '\t')
             word.erase(i, 1);
     }
     return word;
@@ -28,7 +29,6 @@ std::string Erase(std::string word)
 
 int main()
 {
-
     std::ifstream file, fil1;
     std::string word, filename;
     filename = "temp.txt";
