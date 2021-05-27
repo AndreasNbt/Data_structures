@@ -24,7 +24,7 @@ private:
 
 protected:
      Node *root;
-     virtual void Output(Node *t);
+     void Output(Node *t);
      Node* findMaxOfSubtree(Node *n);
      void PreOrder(Node *root);
      void PostOrder(Node *root);

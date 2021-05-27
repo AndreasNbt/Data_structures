@@ -160,9 +160,5 @@ Node *AVLTree::RL(Node *parent) {
     return L(parent);
 }
 
-void AVLTree::Output(Node *t) {
-    std::cout << t->data << " " << t->count << " " << t->height << std::endl;
-}
-
 
 
