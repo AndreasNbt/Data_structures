@@ -132,10 +132,18 @@ void BinarySearchTree::InOrder(Node *t) {
     }
 }
 
-// a function to get the root of the tree.
-Node *BinarySearchTree::getRoot() {
-    return root;
+void BinarySearchTree::PreOrder() {
+    PreOrder(root);
 }
+
+void BinarySearchTree::PostOrder() {
+    PreOrder(root);
+}
+
+void BinarySearchTree::InOrder() {
+    PreOrder(root);
+}
+
 
 
 

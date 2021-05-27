@@ -26,18 +26,20 @@ protected:
      Node *root;
      virtual void Output(Node *t);
      Node* findMaxOfSubtree(Node *n);
+     void PreOrder(Node *root);
+     void PostOrder(Node *root);
+     void InOrder(Node *root);
 
 public:
-    Node* getRoot();
     BinarySearchTree();
     virtual void insert(const std::string& word);
     virtual void remove(const std::string& word);
     int search(const std::string& word);
 
     //The three order methods
-    void PreOrder(Node *t);
-    void PostOrder(Node *t);
-    void InOrder(Node *t);
+    void PreOrder();
+    void PostOrder();
+    void InOrder();
 
 };
 
