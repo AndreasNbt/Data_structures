@@ -7,7 +7,7 @@ BinarySearchTree::BinarySearchTree()
 
 // An output method to print the data of the tree
 void BinarySearchTree::Output(Node *t) {
-    std::cout << t->data << " " << t->count <<  std::endl;
+    std::cout << t->data << " " << t->count << " " << t->height <<  std::endl;
 }
 
 Node *BinarySearchTree::InsertNode(Node *n, const std::string &word) {
@@ -137,11 +137,11 @@ void BinarySearchTree::PreOrder() {
 }
 
 void BinarySearchTree::PostOrder() {
-    PreOrder(root);
+    PostOrder(root);
 }
 
 void BinarySearchTree::InOrder() {
-    PreOrder(root);
+    InOrder(root);
 }
 
 

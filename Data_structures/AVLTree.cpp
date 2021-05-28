@@ -3,6 +3,26 @@
 // AVL Tree constructor, we use the Binary Search Tree constructor using inheritance as the operation is the same.
 AVLTree::AVLTree() : BinarySearchTree() {}
 
+void print2DUtil(Node *root, int space)
+{
+    if (root == nullptr)
+        return;
+    space += 10;
+    print2DUtil(root->rightChild, space);
+
+    std::cout<<std::endl;
+    for (int i = 10; i < space; i++)
+        std::cout<<" ";
+    std::cout<<root->data<<"\n";
+
+    print2DUtil(root->leftChild, space);
+}
+
+void print2D(Node *root)
+{
+    print2DUtil(root, 0);
+}
+
 // the private function that is used to insert
 Node* AVLTree::InsertAndBalance(Node *n, const std::string &word) {
     if (!n) {   // memory commitment for the new Node if the node pointer points to an empty node
@@ -82,10 +102,10 @@ int AVLTree::height(Node *n) {
 //function for the height update for the nodes that need it when we use the rotations
 void AVLTree::heightUpdate(Node *t)
 {
-    if (AVLTree::height(t->leftChild) > AVLTree::height(t->rightChild))
-        t->height = AVLTree::height(t->leftChild) + 1;
+    if (height(t->leftChild) > height(t->rightChild))
+        t->height = height(t->leftChild) + 1;
     else
-        t->height = AVLTree::height(t->rightChild) + 1;
+        t->height = height(t->rightChild) + 1;
 }
 
 // the function for the tree balancing
@@ -96,7 +116,7 @@ Node *AVLTree::balanceTree(Node *n, const std::string& word) {
 
     // subtraction of the left and right height
     int balanceFactor = height(n->leftChild) - height(n->rightChild); // the factor we use to check if the tree is balanced.
-
+    //std::cout << balanceFactor << std::endl;
     // selection of the rotation to balance the tree
     if (balanceFactor > 1) {
         if (word < n->leftChild->data) {
@@ -120,6 +140,9 @@ Node *AVLTree::balanceTree(Node *n, const std::string& word) {
 Node *AVLTree::R(Node *parent) {
     Node *t;
     t = parent->leftChild;
+
+    if (t == nullptr) return parent;
+
     parent->leftChild = t->rightChild;
     t->rightChild = parent;
 
@@ -134,6 +157,9 @@ Node *AVLTree::R(Node *parent) {
 Node *AVLTree::L(Node *parent) {
     Node *t;
     t = parent->rightChild;
+
+    if (t == nullptr) return parent;
+
     parent->rightChild = t->leftChild;
     t->leftChild = parent;
 
