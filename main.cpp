@@ -56,8 +56,10 @@ int main()
             words_count++;
         }
     }
-    else
+    else {
         std::cout << "Couldn't open file.";
+        return 0;
+    }
 
     file.close();
     file.clear();
@@ -89,6 +91,8 @@ int main()
         unsigned int num = dist6(rng);
         i = words[num];
     }
+
+    //  Search method testing
 
     std::cout << "Unsorted Array Results\n";
     std::cout << "-----------------------\n";
@@ -143,6 +147,54 @@ int main()
     }
     timer.stop();
     std::cout << "Searching in HashTable took: " << timer.getDuration() << " microseconds.\n";
+
+
+    // Remove method testing
+
+    std::cout << "Unsorted Array Results\n";
+    std::cout << "-----------------------\n";
+    timer.start();
+    for (auto &i: Q) {
+        arr.remove(i);
+        //std::cout << "The word " << i << " appears " << c << " times.\n";
+    }
+    timer.stop();
+    std::cout << "Searching in Unsorted array took: " << timer.getDuration() << " microseconds.\n\n";
+
+
+    std::cout << "Sorted Array Results\n";
+    std::cout << "-----------------------\n";
+    timer.start();
+    for (auto &i: Q) {
+        sarr.remove(i);
+        //std::cout << "The word " << i << " appears " << c << " times.\n";
+    }
+    timer.stop();
+    std::cout << "Searching in Sorted array took: " << timer.getDuration() << " microseconds.\n\n";
+
+
+    std::cout << "Binary Search Tree Results\n";
+    std::cout << "-----------------------\n";
+    timer.start();
+    for (auto &i: Q) {
+        btree.remove(i);
+        //std::cout << "The word " << i << " appears " << c << " times.\n";
+    }
+    timer.stop();
+    std::cout << "Searching in Binary Search Tree took: " << timer.getDuration() << " microseconds.\n\n";
+
+
+    std::cout << "AVL Tree Results\n";
+    std::cout << "-----------------------\n";
+    timer.start();
+    for (auto &i: Q) {
+        avl.remove(i);
+        //std::cout << "The word " << i << " appears " << c << " times.\n";
+    }
+    timer.stop();
+    std::cout << "Searching in AVL Tree took: " << timer.getDuration() << " microseconds.\n\n";
+
+    // Hash table has no remove method
 
     return 0;
 }

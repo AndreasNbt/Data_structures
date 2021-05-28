@@ -108,6 +108,7 @@ int HashTable::search(const std::string &word) {
         delete[] temp;
    }
 
+   // function that returns the next prime number after n
     int HashTable::findNextPrime(int n) {
         for (int i = n;; i++) {
             bool flag = true;
