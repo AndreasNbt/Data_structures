@@ -11,7 +11,7 @@ void BinarySearchTree::Output(Node *t) {
 }
 
 Node *BinarySearchTree::InsertNode(Node *n, const std::string &word) {
-    if (!n) {   // if there is no data in the node we just add the new data.
+    if (!n) {   // memory commitment for the new Node if the node pointer points to an empty node
         n = new Node(word);
         return n;
 // searching for the Node.

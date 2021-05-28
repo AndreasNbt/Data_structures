@@ -5,7 +5,7 @@
 
 #include "Data_structures/BinarySearchTree.h"
 
-
+// AVLTree consist of 9 private & 3 public members
 class AVLTree : public BinarySearchTree {
     private:
         Node* InsertAndBalance(Node *n, const std::string &word);
