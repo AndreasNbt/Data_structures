@@ -21,8 +21,6 @@ unsigned long long HashTable::HashFunc(const std::string &word) {
         key = (key + (c - 'a' + 1) * p_pow) % m;
         p_pow = (p_pow * p) % m;
     }
-
-
     return key;
 }
 
