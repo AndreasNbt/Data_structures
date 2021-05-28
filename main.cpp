@@ -94,7 +94,7 @@ int main()
 
     //  Search method testing
 
-    std::cout << "Unsorted Array Results\n";
+    std::cout << "Unsorted Array Search Results\n";
     std::cout << "-----------------------\n";
     timer.start();
     for (auto &i: Q) {
@@ -105,7 +105,7 @@ int main()
     std::cout << "Searching in Unsorted array took: " << timer.getDuration() << " microseconds.\n\n";
 
 
-    std::cout << "Sorted Array Results\n";
+    std::cout << "Sorted Array Search Results\n";
     std::cout << "-----------------------\n";
     timer.start();
     for (auto &i: Q) {
@@ -116,7 +116,7 @@ int main()
     std::cout << "Searching in Sorted array took: " << timer.getDuration() << " microseconds.\n\n";
 
 
-    std::cout << "Binary Search Tree Results\n";
+    std::cout << "Binary Search Search Tree Results\n";
     std::cout << "-----------------------\n";
     timer.start();
     for (auto &i: Q) {
@@ -127,7 +127,7 @@ int main()
     std::cout << "Searching in Binary Search Tree took: " << timer.getDuration() << " microseconds.\n\n";
 
 
-    std::cout << "AVL Tree Results\n";
+    std::cout << "AVL Tree Search Results\n";
     std::cout << "-----------------------\n";
     timer.start();
     for (auto &i: Q) {
@@ -138,7 +138,7 @@ int main()
     std::cout << "Searching in AVL Tree took: " << timer.getDuration() << " microseconds.\n\n";
 
 
-    std::cout << "HashTable Results\n";
+    std::cout << "HashTable Search Results\n";
     std::cout << "-----------------------\n";
     timer.start();
     for (auto &i: Q) {
@@ -151,7 +151,7 @@ int main()
 
     // Remove method testing
 
-    std::cout << "Unsorted Array Results\n";
+    std::cout << "Unsorted Array Delete Results\n";
     std::cout << "-----------------------\n";
     timer.start();
     for (auto &i: Q) {
@@ -159,10 +159,10 @@ int main()
         //std::cout << "The word " << i << " appears " << c << " times.\n";
     }
     timer.stop();
-    std::cout << "Searching in Unsorted array took: " << timer.getDuration() << " microseconds.\n\n";
+    std::cout << "Deleting in Unsorted array took: " << timer.getDuration() << " microseconds.\n\n";
 
 
-    std::cout << "Sorted Array Results\n";
+    std::cout << "Sorted Array Delete Results\n";
     std::cout << "-----------------------\n";
     timer.start();
     for (auto &i: Q) {
@@ -170,10 +170,10 @@ int main()
         //std::cout << "The word " << i << " appears " << c << " times.\n";
     }
     timer.stop();
-    std::cout << "Searching in Sorted array took: " << timer.getDuration() << " microseconds.\n\n";
+    std::cout << "Deleting in Sorted array took: " << timer.getDuration() << " microseconds.\n\n";
 
 
-    std::cout << "Binary Search Tree Results\n";
+    std::cout << "Binary Search Tree Delete Results\n";
     std::cout << "-----------------------\n";
     timer.start();
     for (auto &i: Q) {
@@ -181,10 +181,10 @@ int main()
         //std::cout << "The word " << i << " appears " << c << " times.\n";
     }
     timer.stop();
-    std::cout << "Searching in Binary Search Tree took: " << timer.getDuration() << " microseconds.\n\n";
+    std::cout << "Deleting in Binary Search Tree took: " << timer.getDuration() << " microseconds.\n\n";
 
 
-    std::cout << "AVL Tree Results\n";
+    std::cout << "AVL Tree Delete Results\n";
     std::cout << "-----------------------\n";
     timer.start();
     for (auto &i: Q) {
@@ -192,7 +192,7 @@ int main()
         //std::cout << "The word " << i << " appears " << c << " times.\n";
     }
     timer.stop();
-    std::cout << "Searching in AVL Tree took: " << timer.getDuration() << " microseconds.\n\n";
+    std::cout << "Deleting in AVL Tree took: " << timer.getDuration() << " microseconds.\n\n";
 
     // Hash table has no remove method
 
