@@ -8,10 +8,6 @@
 #include <array>
 
 struct HashNode {
-private:
-    void setCount(int c) { this->count = c;}
-
-public:
     std::string word;
     int count{};
     HashNode() = default;
