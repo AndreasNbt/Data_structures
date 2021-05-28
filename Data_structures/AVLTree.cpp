@@ -111,17 +111,17 @@ Node *AVLTree::balanceTree(Node *n, const std::string& word) {
 }
 
 //function for the height update for the nodes that need it when we use the rotations
-void AVLTree::heightUpdate(Node *parent, Node *t)
+void heightUpdate(Node *parent, Node *t)
 {
-    if (height(parent->leftChild) > height(parent->rightChild))
-        parent->height = height(parent->leftChild) + 1;
+    if (AVLTree::height(parent->leftChild) > AVLTree::height(parent->rightChild))
+        parent->height = AVLTree::height(parent->leftChild) + 1;
     else
-        parent->height = height(parent->rightChild) + 1;
+        parent->height = AVLTree::height(parent->rightChild) + 1;
 
-    if (height(t->leftChild) > height(t->rightChild))
-        t->height = height(t->leftChild) + 1;
+    if (AVLTree::height(t->leftChild) > AVLTree::height(t->rightChild))
+        t->height = AVLTree::height(t->leftChild) + 1;
     else
-        t->height = height(t->rightChild) + 1;
+        t->height = AVLTree::height(t->rightChild) + 1;
 }
 
 // right rotation
