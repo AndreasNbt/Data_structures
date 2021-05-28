@@ -7,6 +7,7 @@
 #include <utility>
 #include <array>
 
+
 struct HashNode {
     std::string word;
     int count{};

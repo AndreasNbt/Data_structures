@@ -79,14 +79,20 @@ int AVLTree::height(Node *n) {
     return (n != nullptr ? n->height : 0 );
 }
 
+//function for the height update for the nodes that need it when we use the rotations
+void heightUpdate(Node *parent, Node *t)
+{
+    if (AVLTree::height(parent->leftChild) > AVLTree::height(parent->rightChild))
+        parent->height = AVLTree::height(parent->leftChild) + 1;
+    else
+        parent->height = AVLTree::height(parent->rightChild) + 1;
+}
+
 // the function for the tree balancing
 Node *AVLTree::balanceTree(Node *n, const std::string& word) {
 
     // height update for the nodes after the insert or remove function
-    if (height(n->leftChild) > height(n->rightChild))
-        n->height = height(n->leftChild) + 1;
-    else
-        n->height = height(n->rightChild) + 1;
+    heightUpdate(n);
 
     // subtraction of the left and right height
     int balanceFactor = height(n->leftChild) - height(n->rightChild); // the factor we use to check if the tree is balanced.
@@ -110,20 +116,6 @@ Node *AVLTree::balanceTree(Node *n, const std::string& word) {
     return n;
 }
 
-//function for the height update for the nodes that need it when we use the rotations
-void heightUpdate(Node *parent, Node *t)
-{
-    if (AVLTree::height(parent->leftChild) > AVLTree::height(parent->rightChild))
-        parent->height = AVLTree::height(parent->leftChild) + 1;
-    else
-        parent->height = AVLTree::height(parent->rightChild) + 1;
-
-    if (AVLTree::height(t->leftChild) > AVLTree::height(t->rightChild))
-        t->height = AVLTree::height(t->leftChild) + 1;
-    else
-        t->height = AVLTree::height(t->rightChild) + 1;
-}
-
 // right rotation
 Node *AVLTree::R(Node *parent) {
     Node *t;
@@ -132,7 +124,8 @@ Node *AVLTree::R(Node *parent) {
     t->rightChild = parent;
 
     // height update for the nodes
-    heightUpdate(parent,t);
+    heightUpdate(parent);
+    heightUpdate(t);
 
     return t;
 }
@@ -145,7 +138,8 @@ Node *AVLTree::L(Node *parent) {
     t->leftChild = parent;
 
     // height update for the nodes
-    heightUpdate(parent,t);
+    heightUpdate(parent);
+    heightUpdate(t);
 
     return t;
 }
