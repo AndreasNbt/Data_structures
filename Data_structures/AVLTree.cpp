@@ -116,7 +116,7 @@ Node *AVLTree::balanceTree(Node *n, const std::string& word) {
 
     // subtraction of the left and right height
     int balanceFactor = height(n->leftChild) - height(n->rightChild); // the factor we use to check if the tree is balanced.
-    //std::cout << balanceFactor << std::endl;
+
     // selection of the rotation to balance the tree
     if (balanceFactor > 1) {
         if (word < n->leftChild->data) {
