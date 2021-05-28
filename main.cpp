@@ -31,7 +31,7 @@ int main()
 {
     std::ifstream file, fil1;
     std::string word, filename;
-    filename = "temp.txt";
+    filename = R"(C:\Users\andre\Desktop\Data_structures\temp.txt)";
     Timer timer;
 
     array arr;
@@ -76,8 +76,10 @@ int main()
             count++;
         }
     }
-    else
+    else {
         std::cout << "Couldn't open file.";
+        return 0;
+    }
 
 
     std::string Q[1000]; // Q array which will contain the randomly chosen 1000 words.

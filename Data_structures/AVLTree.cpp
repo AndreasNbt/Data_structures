@@ -80,7 +80,7 @@ int AVLTree::height(Node *n) {
 }
 
 //function for the height update for the nodes that need it when we use the rotations
-void heightUpdate(Node *t)
+void AVLTree::heightUpdate(Node *t)
 {
     if (AVLTree::height(t->leftChild) > AVLTree::height(t->rightChild))
         t->height = AVLTree::height(t->leftChild) + 1;

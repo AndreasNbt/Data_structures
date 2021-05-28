@@ -10,11 +10,12 @@ class AVLTree : public BinarySearchTree {
     private:
         Node* InsertAndBalance(Node *n, const std::string &word);
         Node* DeleteAndBalance(Node *n, const std::string &word);
-        static Node *R(Node *parent);
-        static Node *L(Node *parent);
-        static Node *LR(Node *parent);
-        static Node *RL(Node *parent);
-        static Node* balanceTree(Node *n, const std::string& word);
+        Node *R(Node *parent);
+        Node *L(Node *parent);
+        Node *LR(Node *parent);
+        Node *RL(Node *parent);
+        Node* balanceTree(Node *n, const std::string& word);
+        void heightUpdate(Node *t);
 
     public:
         AVLTree();
