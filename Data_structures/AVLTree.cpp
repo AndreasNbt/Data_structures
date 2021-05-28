@@ -110,6 +110,7 @@ Node *AVLTree::balanceTree(Node *n, const std::string& word) {
     return n;
 }
 
+//function for the height update for the nodes that need it when we use the rotations
 void AVLTree::heightUpdate(Node *parent, Node *t)
 {
     if (height(parent->leftChild) > height(parent->rightChild))
