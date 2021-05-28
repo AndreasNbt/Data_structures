@@ -25,7 +25,6 @@ private:
     void resize();
 
 public:
-
     explicit HashTable();
     ~HashTable();
     void insert(const std::string &word);
