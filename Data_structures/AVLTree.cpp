@@ -110,14 +110,8 @@ Node *AVLTree::balanceTree(Node *n, const std::string& word) {
     return n;
 }
 
-// right rotation
-Node *AVLTree::R(Node *parent) {
-    Node *t;
-    t = parent->leftChild;
-    parent->leftChild = t->rightChild;
-    t->rightChild = parent;
-
-    // height update for the nodes
+void AVLTree::heightUpdate(Node *parent, Node *t)
+{
     if (height(parent->leftChild) > height(parent->rightChild))
         parent->height = height(parent->leftChild) + 1;
     else
@@ -127,6 +121,18 @@ Node *AVLTree::R(Node *parent) {
         t->height = height(t->leftChild) + 1;
     else
         t->height = height(t->rightChild) + 1;
+}
+
+// right rotation
+Node *AVLTree::R(Node *parent) {
+    Node *t;
+    t = parent->leftChild;
+    parent->leftChild = t->rightChild;
+    t->rightChild = parent;
+
+    // height update for the nodes
+    heightUpdate(parent,t);
+
     return t;
 }
 
@@ -138,15 +144,8 @@ Node *AVLTree::L(Node *parent) {
     t->leftChild = parent;
 
     // height update for the nodes
-    if (height(parent->leftChild) > height(parent->rightChild))
-        parent->height = height(parent->leftChild) + 1;
-    else
-        parent->height = height(parent->rightChild) + 1;
+    heightUpdate(parent,t);
 
-    if (height(t->leftChild) > height(t->rightChild))
-        t->height = height(t->leftChild) + 1;
-    else
-        t->height = height(t->rightChild) + 1;
     return t;
 }
 
