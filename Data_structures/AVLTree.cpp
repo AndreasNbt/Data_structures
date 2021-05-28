@@ -80,12 +80,12 @@ int AVLTree::height(Node *n) {
 }
 
 //function for the height update for the nodes that need it when we use the rotations
-void heightUpdate(Node *parent, Node *t)
+void heightUpdate(Node *t)
 {
-    if (AVLTree::height(parent->leftChild) > AVLTree::height(parent->rightChild))
-        parent->height = AVLTree::height(parent->leftChild) + 1;
+    if (AVLTree::height(t->leftChild) > AVLTree::height(t->rightChild))
+        t->height = AVLTree::height(t->leftChild) + 1;
     else
-        parent->height = AVLTree::height(parent->rightChild) + 1;
+        t->height = AVLTree::height(t->rightChild) + 1;
 }
 
 // the function for the tree balancing
