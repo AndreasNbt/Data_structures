@@ -25,10 +25,10 @@ std::string Erase(std::string word)
     }
     return word;
 }
-void print2D(Node *root);
 
 int main()
 {
+
     std::ifstream file, fil1;
     std::string word, filename;
     filename = R"(C:\Users\andre\Desktop\Data_structures\temp.txt)";
@@ -148,7 +148,7 @@ int main()
     std::cout << "-----------------------\n\n";
 
     std::cout << "Remove method testing\n";
-
+    std::cout << "-----------------------\n";
 
     timer.start();
     for (auto &i: Q)
@@ -182,8 +182,8 @@ int main()
         avl.remove(i);
     }
     timer.stop();
-    std::cout << "Deleting in AVL Tree took: " << timer.getDuration() << " microseconds.\n\n";
-
+    std::cout << "Deleting in AVL Tree took: " << timer.getDuration() << " microseconds.\n";
+    std::cout << "-----------------------\n";
 
     // Hash table has no remove method
 

@@ -23,7 +23,7 @@ private:
     Node* DeleteNode(Node *n, const std::string &word);
 
 protected:
-
+     Node *root;
      void Output(Node *t);
      Node* findMaxOfSubtree(Node *n);
      void PreOrder(Node *root);
@@ -31,7 +31,6 @@ protected:
      void InOrder(Node *root);
 
 public:
-    Node *root;
     BinarySearchTree();
     virtual void insert(const std::string& word);
     virtual void remove(const std::string& word);

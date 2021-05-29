@@ -3,25 +3,6 @@
 // AVL Tree constructor, we use the Binary Search Tree constructor using inheritance as the operation is the same.
 AVLTree::AVLTree() : BinarySearchTree() {}
 
-void print2DUtil(Node *root, int space)
-{
-    if (root == nullptr)
-        return;
-    space += 10;
-    print2DUtil(root->rightChild, space);
-
-    std::cout<<std::endl;
-    for (int i = 10; i < space; i++)
-        std::cout<<" ";
-    std::cout<<root->data<<"\n";
-
-    print2DUtil(root->leftChild, space);
-}
-
-void print2D(Node *root)
-{
-    print2DUtil(root, 0);
-}
 
 // the private function that is used to insert
 Node* AVLTree::InsertAndBalance(Node *n, const std::string &word) {
@@ -114,6 +95,7 @@ Node *AVLTree::balanceTree(Node *n, const std::string& word) {
     // height update for the nodes after the insert or remove function
     heightUpdate(n);
 
+
     // subtraction of the left and right height
     int balanceFactor = height(n->leftChild) - height(n->rightChild); // the factor we use to check if the tree is balanced.
 
@@ -138,8 +120,7 @@ Node *AVLTree::balanceTree(Node *n, const std::string& word) {
 
 // right rotation
 Node *AVLTree::R(Node *parent) {
-    Node *t;
-    t = parent->leftChild;
+    Node *t = parent->leftChild;
 
     if (t == nullptr) return parent;
 
@@ -155,8 +136,7 @@ Node *AVLTree::R(Node *parent) {
 
 // left rotation
 Node *AVLTree::L(Node *parent) {
-    Node *t;
-    t = parent->rightChild;
+    Node *t = parent->rightChild;
 
     if (t == nullptr) return parent;
 
@@ -172,16 +152,14 @@ Node *AVLTree::L(Node *parent) {
 
 // left-right rotation
 Node *AVLTree::LR(Node *parent) {
-    Node *t;
-    t = parent->leftChild;
+    Node *t = parent->leftChild;
     parent->leftChild = L(t);
     return R(parent);
 }
 
 // right-left rotation
 Node *AVLTree::RL(Node *parent) {
-    Node *t;
-    t = parent->rightChild;
+    Node *t = parent->rightChild;
     parent->rightChild = R(t);
     return L(parent);
 }
