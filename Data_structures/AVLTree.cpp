@@ -11,10 +11,10 @@ Node* AVLTree::InsertAndBalance(Node *n, const std::string &word) {
         return n;
     } else if (word< n->data) { // recursion to enter left side of the subtree
         n->leftChild = InsertAndBalance(n->leftChild, word);
-        n = balanceTree(n, word);
+        n = balanceTree(n, word, 1);
     } else if (word > n->data) { // recursion to enter right side of the subtree
         n->rightChild = InsertAndBalance(n->rightChild, word);
-        n = balanceTree(n, word);
+        n = balanceTree(n, word, 1);
     } else if (word == n->data) { // update of the counter in case word is already in the tree
         n->count++;
     }
@@ -65,7 +65,7 @@ Node *AVLTree::DeleteAndBalance(Node *n, const std::string &word) {
     if (!n) // if node is not found
         return n;
 
-    n = balanceTree(n, word);
+    n = balanceTree(n, word, 0);
 
     return n;
 }
@@ -90,7 +90,7 @@ void AVLTree::heightUpdate(Node *t)
 }
 
 // the function for the tree balancing
-Node *AVLTree::balanceTree(Node *n, const std::string& word) {
+Node *AVLTree::balanceTree(Node *n, const std::string& word, int f) {
 
     // height update for the nodes after the insert or remove function
     heightUpdate(n);
@@ -100,19 +100,34 @@ Node *AVLTree::balanceTree(Node *n, const std::string& word) {
     int balanceFactor = height(n->leftChild) - height(n->rightChild); // the factor we use to check if the tree is balanced.
 
     // selection of the rotation to balance the tree
-    if (balanceFactor > 1) {
-        if (word < n->leftChild->data) {
-            n = R(n);
+    if (f == 1) { // if called by insert
+        if (balanceFactor > 1) {
+            if (word < n->leftChild->data) {
+                return(R(n));
+            } else if (word > n->leftChild->data) {
+                return(LR(n));
+            }
+        } else if (balanceFactor < -1) {
+            if (word < n->rightChild->data) {
+                return(RL(n));
+            } else if (word > n->rightChild->data) {
+                return(L(n));
+            }
         }
-        else if (word > n->leftChild->data) {
-            n = LR(n);
-        }
-    } else if (balanceFactor < -1) {
-        if (word < n->rightChild->data ) {
-            n = RL(n);
-        }
-        else if (word > n->rightChild->data) {
-            n = L(n);
+    }
+    else { // if called by delete
+        if (balanceFactor > 1) {
+            if (word < n->leftChild->data) {
+                return(LR(n));
+            } else if (word > n->leftChild->data) {
+                return(R(n));
+            }
+        } else if (balanceFactor < -1) {
+            if (word < n->rightChild->data) {
+                return(L(n));
+            } else if (word > n->rightChild->data) {
+                return(RL(n));
+            }
         }
     }
     return n;
@@ -121,9 +136,6 @@ Node *AVLTree::balanceTree(Node *n, const std::string& word) {
 // right rotation
 Node *AVLTree::R(Node *parent) {
     Node *t = parent->leftChild;
-
-    if (t == nullptr) return parent;
-
     parent->leftChild = t->rightChild;
     t->rightChild = parent;
 
@@ -137,9 +149,6 @@ Node *AVLTree::R(Node *parent) {
 // left rotation
 Node *AVLTree::L(Node *parent) {
     Node *t = parent->rightChild;
-
-    if (t == nullptr) return parent;
-
     parent->rightChild = t->leftChild;
     t->leftChild = parent;
 
