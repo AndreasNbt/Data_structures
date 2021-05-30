@@ -81,7 +81,8 @@ int main()
 
 
 
-
+    std::cout << "Insert method testing\n";
+    std::cout << "-----------------------\n";
 
     timer.start();
     file.open(filename);
@@ -90,8 +91,7 @@ int main()
         arr.insert(words[i]);
     }
     timer.stop();
-    std::cout << "Insert method testing\n";
-    std::cout << "-----------------------\n";
+
 
     std::cout << "Inserting in Unsorted array took: " << timer.getSec() << " seconds.\n\n";
 
