@@ -31,7 +31,7 @@ int main()
 
     std::ifstream file, fil1;
     std::string word, filename;
-    filename = R"(C:\Users\andre\Desktop\Data_structures\temp.txt)";
+    filename = "C:/Data_structures/gutenberg.txt";
     Timer timer;
 
     array arr;
@@ -42,6 +42,8 @@ int main()
 
     int words_count = 0;
 
+    std::cout << "Insert method testing\n";
+
     timer.start();
     file.open(filename);
     if (file.is_open()) { // the insertions in all the data structures happen
@@ -49,10 +51,6 @@ int main()
             word = Erase(word);
             if (word.empty()) continue;
             arr.insert(word);
-            sarr.insert(word);
-            btree.insert(word);
-            avl.insert(word);
-            hash.insert(word);
             words_count++;
         }
     }
@@ -60,9 +58,92 @@ int main()
         std::cout << "Couldn't open file.";
         return 0;
     }
+    timer.stop();
+    std::cout << "Inserting in Unsorted array took: " << timer.getDuration() << " microseconds.\n\n";
 
     file.close();
     file.clear();
+
+
+    timer.start();
+    file.open(filename);
+    if (file.is_open()) { // the insertions in all the data structures happen
+        while (file >> word) {
+            word = Erase(word);
+            if (word.empty()) continue;
+            sarr.insert(word);
+        }
+    }
+    else {
+        std::cout << "Couldn't open file.";
+        return 0;
+    }
+    timer.stop();
+    std::cout << "Inserting in Sorted array took: " << timer.getDuration() << " microseconds.\n\n";
+
+    file.close();
+    file.clear();
+
+
+    timer.start();
+    file.open(filename);
+    if (file.is_open()) { // the insertions in all the data structures happen
+        while (file >> word) {
+            word = Erase(word);
+            if (word.empty()) continue;
+            btree.insert(word);
+        }
+    }
+    else {
+        std::cout << "Couldn't open file.";
+        return 0;
+    }
+    timer.stop();
+    std::cout << "Inserting in Binary Search Tree took: " << timer.getDuration() << " microseconds.\n\n";
+
+    file.close();
+    file.clear();
+
+
+    timer.start();
+    file.open(filename);
+    if (file.is_open()) { // the insertions in all the data structures happen
+        while (file >> word) {
+            word = Erase(word);
+            if (word.empty()) continue;
+            avl.insert(word);
+        }
+    }
+    else {
+        std::cout << "Couldn't open file.";
+        return 0;
+    }
+    timer.stop();
+    std::cout << "Inserting in AVL Tree took: " << timer.getDuration() << " microseconds.\n\n";
+
+    file.close();
+    file.clear();
+
+    timer.start();
+    file.open(filename);
+    if (file.is_open()) { // the insertions in all the data structures happen
+        while (file >> word) {
+            word = Erase(word);
+            if (word.empty()) continue;
+            hash.insert(word);
+        }
+    }
+    else {
+        std::cout << "Couldn't open file.";
+        return 0;
+    }
+    timer.stop();
+    std::cout << "Inserting in Hash Table took: " << timer.getDuration() << " microseconds.\n\n";
+
+    file.close();
+    file.clear();
+
+    std::cout << "-----------------------\n\n";
 
     auto *words = new std::string[words_count]; //temporary array in which all the words will be stored, so 1000 random ones can be selected.
 
