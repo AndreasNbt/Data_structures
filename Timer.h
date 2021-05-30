@@ -15,6 +15,7 @@ public:
     void start();
     void stop();
     double getDuration();
+    double getSec();
 };
 
 

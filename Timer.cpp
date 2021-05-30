@@ -17,3 +17,9 @@ double Timer::getDuration() {
     auto time = endTime - startTime;
     return time / std::chrono::microseconds (1);
 }
+
+double Timer::getSec()
+{
+    auto time = this->getDuration();
+    return time/1e+6;
+}
