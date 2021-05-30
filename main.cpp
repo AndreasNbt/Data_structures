@@ -31,7 +31,7 @@ int main()
 
     std::ifstream file, fil1;
     std::string word, filename;
-    filename = "C:/Data_structures/temp.txt";
+    filename = R"(C:\Users\andre\Desktop\Data_structures\temp.txt)";
     Timer timer;
 
     array arr;
@@ -81,7 +81,7 @@ int main()
 
 
 
-    std::cout << "Insert method testing\n";
+
 
     timer.start();
     file.open(filename);
@@ -90,6 +90,9 @@ int main()
         arr.insert(words[i]);
     }
     timer.stop();
+    std::cout << "Insert method testing\n";
+    std::cout << "-----------------------\n";
+
     std::cout << "Inserting in Unsorted array took: " << timer.getSec() << " seconds.\n\n";
 
     file.close();
@@ -167,6 +170,7 @@ int main()
     }
 
     std::cout << "Search method testing\n" ;
+    std::cout << "-----------------------\n";
 
     //std::cout << "Unsorted array\n";
     //std::cout << "-----------------------\n";
