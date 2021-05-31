@@ -55,14 +55,14 @@ Node *AVLTree::DeleteAndBalance(Node *n, const std::string &word) {
             delete(temp);
         }
         else
-        {
+        {   // if node has 2 children
             Node *temp = findMaxOfSubtree(n->leftChild);
             n->data = temp->data;
             n->count = temp->count;
             n->leftChild = DeleteAndBalance(n->leftChild, temp->data);
         }
     }
-    if (!n) // if node is not found
+    if (!n)
         return n;
 
     n = balanceTree(n, word, 0);
@@ -96,7 +96,7 @@ Node *AVLTree::balanceTree(Node *n, const std::string& word, int f) {
     heightUpdate(n);
 
 
-    // subtraction of the left and right height
+    // balance factor is the height difference between the left and right subtree of a node
     int balanceFactor = height(n->leftChild) - height(n->rightChild); // the factor we use to check if the tree is balanced.
 
     // selection of the rotation to balance the tree

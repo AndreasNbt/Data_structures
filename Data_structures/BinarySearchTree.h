@@ -6,11 +6,11 @@
 
 //Node for the tree data.
 struct Node {
-    Node *leftChild;
-    Node *rightChild;
     std::string data;
     int count;
     int height;
+    Node *leftChild;
+    Node *rightChild;
     Node() = delete;
     explicit Node(std::string word) :data(std::move(word)), leftChild(nullptr), rightChild(nullptr), count(1), height(1) {}
 };
@@ -24,7 +24,7 @@ private:
 
 protected:
      Node *root;
-     void Output(Node *t);
+     static void Output(Node *t);
      Node* findMaxOfSubtree(Node *n);
      void PreOrder(Node *root);
      void PostOrder(Node *root);

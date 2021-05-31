@@ -104,7 +104,7 @@ Node *BinarySearchTree::findMaxOfSubtree(Node *n) {
         return findMaxOfSubtree(n->rightChild);
 }
 
-// The three order methods
+// Preorder traversal using recursion
 void BinarySearchTree::PreOrder(Node *t) {
     if (t) {
         Output(t);
@@ -113,6 +113,7 @@ void BinarySearchTree::PreOrder(Node *t) {
     }
 }
 
+// Postorder traversal using recursion
 void BinarySearchTree::PostOrder(Node *t) {
     if (t)
     {
@@ -123,6 +124,7 @@ void BinarySearchTree::PostOrder(Node *t) {
 
 }
 
+// Inorder traversal using recursion
 void BinarySearchTree::InOrder(Node *t) {
     if (t)
     {
@@ -132,14 +134,19 @@ void BinarySearchTree::InOrder(Node *t) {
     }
 }
 
+// Wrapper for preorder
 void BinarySearchTree::PreOrder() {
     PreOrder(root);
 }
 
+
+// Wrapper for postorder
 void BinarySearchTree::PostOrder() {
     PostOrder(root);
 }
 
+
+// Wrapper for inorder
 void BinarySearchTree::InOrder() {
     InOrder(root);
 }

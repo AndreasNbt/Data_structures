@@ -7,10 +7,6 @@ HashTable::HashTable()  {
     hashTable = new HashNode[size];
 }
 
-HashTable::~HashTable() {
-    delete[] hashTable;
-}
-
 // Polynomial rolling hash function
 unsigned long long HashTable::HashFunc(const std::string &word) {
     const int p = 31;
@@ -25,7 +21,7 @@ unsigned long long HashTable::HashFunc(const std::string &word) {
 }
 
 
-
+// inserts a word in the hashtable, using quadratic probing for collisions
 void HashTable::insert(const std::string &word) {
 
     if (length >=  3*size/4)
@@ -58,6 +54,8 @@ void HashTable::insert(const std::string &word) {
     }
 }
 
+
+// searches for a word, using the hash function and quadratic probing for collisions
 int HashTable::search(const std::string &word) {
 
     int i = 1;

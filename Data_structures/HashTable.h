@@ -27,7 +27,6 @@ private:
 
 public:
     explicit HashTable();
-    ~HashTable();
     void insert(const std::string &word);
     int search(const std::string &word);
 };
