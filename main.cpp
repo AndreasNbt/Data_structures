@@ -42,7 +42,7 @@ int main()
     AVLTree avl;
     HashTable hash;
 
-    int words_count = 0;
+    unsigned long long words_count = 0;
 
 
 
@@ -66,8 +66,7 @@ int main()
 
     auto *words = new std::string[words_count]; //temporary array in which all the words will be stored, so the insertions can happen
                                                 // and 1000 random ones can be selected later
-
-    int count = 0;
+    unsigned long long count = 0;
     file.open(filename);
     if (file.is_open()) {
         while (file >> word) {
