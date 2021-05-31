@@ -29,6 +29,8 @@ std::string Erase(std::string word)
 int main()
 {
 
+    std::ofstream output("output.txt");
+
     std::ifstream file, fil1;
     std::string word, filename;
     filename = R"(C:\Users\andre\Desktop\Data_structures\temp.txt)";
@@ -76,6 +78,7 @@ int main()
     }
     else {
         std::cout << "Couldn't open file.";
+        output << "Couldn't open file.";
         return 0;
     }
 
@@ -83,6 +86,8 @@ int main()
 
     std::cout << "Insert method testing\n";
     std::cout << "-----------------------\n";
+    output << "Insert method testing\n";
+    output << "-----------------------\n";
 
     timer.start();
     file.open(filename);
@@ -94,6 +99,7 @@ int main()
 
 
     std::cout << "Inserting in Unsorted array took: " << timer.getSec() << " seconds.\n\n";
+    output << "Inserting in Unsorted array took: " << timer.getSec() << " seconds.\n\n";
 
     file.close();
     file.clear();
@@ -108,6 +114,7 @@ int main()
     }
     timer.stop();
     std::cout << "Inserting in Sorted array took: " << timer.getSec() << " seconds.\n\n";
+    output << "Inserting in Sorted array took: " << timer.getSec() << " seconds.\n\n";
 
     file.close();
     file.clear();
@@ -121,6 +128,7 @@ int main()
     }
     timer.stop();
     std::cout << "Inserting in Binary Search Tree took: " << timer.getSec() << " seconds.\n\n";
+    output << "Inserting in Binary Search Tree took: " << timer.getSec() << " seconds.\n\n";
 
     file.close();
     file.clear();
@@ -134,6 +142,7 @@ int main()
     }
     timer.stop();
     std::cout << "Inserting in AVL Tree took: " << timer.getSec() << " seconds.\n\n";
+    output << "Inserting in AVL Tree took: " << timer.getSec() << " seconds.\n\n";
 
     file.close();
     file.clear();
@@ -146,6 +155,7 @@ int main()
     }
     timer.stop();
     std::cout << "Inserting in Hash Table took: " << timer.getSec() << " seconds.\n\n";
+    output << "Inserting in Hash Table took: " << timer.getSec() << " seconds.\n\n";
 
     file.close();
     file.clear();
@@ -171,6 +181,8 @@ int main()
 
     std::cout << "Search method testing\n" ;
     std::cout << "-----------------------\n";
+    output << "Search method testing\n" ;
+    output << "-----------------------\n";
 
     //std::cout << "Unsorted array\n";
     //std::cout << "-----------------------\n";
@@ -181,6 +193,7 @@ int main()
     }
     timer.stop();
     std::cout << "Searching in Unsorted array took: " << timer.getDuration() << " microseconds.\n\n";
+    output << "Searching in Unsorted array took: " << timer.getDuration() << " microseconds.\n\n";
 
     //std::cout << "-----------------------\n\n";
     //std::cout << "Sorted array\n";
@@ -192,6 +205,7 @@ int main()
     }
     timer.stop();
     std::cout << "Searching in Sorted array took: " << timer.getDuration() << " microseconds.\n\n";
+    output << "Searching in Sorted array took: " << timer.getDuration() << " microseconds.\n\n";
 
 
     //std::cout << "-----------------------\n\n";
@@ -204,6 +218,7 @@ int main()
     }
     timer.stop();
     std::cout << "Searching in Binary Search Tree took: " << timer.getDuration() << " microseconds.\n\n";
+    output << "Searching in Binary Search Tree took: " << timer.getDuration() << " microseconds.\n\n";
 
 
     //std::cout << "-----------------------\n\n";
@@ -216,6 +231,7 @@ int main()
     }
     timer.stop();
     std::cout << "Searching in AVL Tree took: " << timer.getDuration() << " microseconds.\n\n";
+    output << "Searching in AVL Tree took: " << timer.getDuration() << " microseconds.\n\n";
 
 
 
@@ -230,8 +246,13 @@ int main()
     timer.stop();
     std::cout << "Searching in HashTable took: " << timer.getDuration() << " microseconds.\n";
     std::cout << "-----------------------\n\n";
+    output << "Searching in HashTable took: " << timer.getDuration() << " microseconds.\n";
+    output << "-----------------------\n\n";
+
     std::cout << "Remove method testing\n";
     std::cout << "-----------------------\n";
+    output << "Remove method testing\n";
+    output << "-----------------------\n";
 
     timer.start();
     for (auto &i: Q)
@@ -239,6 +260,7 @@ int main()
 
     timer.stop();
     std::cout << "Deleting in Unsorted array took: " << timer.getDuration() << " microseconds.\n\n";
+    output << "Deleting in Unsorted array took: " << timer.getDuration() << " microseconds.\n\n";
 
 
 
@@ -248,6 +270,7 @@ int main()
 
     timer.stop();
     std::cout << "Deleting in Sorted array took: " << timer.getDuration() << " microseconds.\n\n";
+    output << "Deleting in Sorted array took: " << timer.getDuration() << " microseconds.\n\n";
 
 
 
@@ -257,6 +280,7 @@ int main()
 
     timer.stop();
     std::cout << "Deleting in Binary Search Tree took: " << timer.getDuration() << " microseconds.\n\n";
+    output << "Deleting in Binary Search Tree took: " << timer.getDuration() << " microseconds.\n\n";
 
 
 
@@ -267,6 +291,8 @@ int main()
     timer.stop();
     std::cout << "Deleting in AVL Tree took: " << timer.getDuration() << " microseconds.\n";
     std::cout << "-----------------------\n";
+    output << "Deleting in AVL Tree took: " << timer.getDuration() << " microseconds.\n";
+    output << "-----------------------\n";
 
     // Hash table has no remove method
 
