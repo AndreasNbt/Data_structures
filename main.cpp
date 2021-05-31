@@ -151,6 +151,8 @@ int main()
         unsigned int num = dist6(rng);
         i = words[num];
     }
+    delete[] words; // words array won't be used more, so deleting it to free up space
+
 
     //Measuring time needed for searching 1000 words in each data structure
 
