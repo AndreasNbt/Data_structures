@@ -60,6 +60,7 @@ int main()
         return 0;
     }
 
+
     file.close();
     file.clear();
 
