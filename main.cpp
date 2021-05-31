@@ -33,7 +33,7 @@ int main()
 
     std::ifstream file, fil1;
     std::string word, filename;
-    filename = R"(C:\Users\andre\Desktop\Data_structures\temp.txt)";
+    filename = R"(C:\Users\andre\Desktop\Data_structures\gutenberg.txt\gutenberg.txt)";
     Timer timer;
 
     array arr;
@@ -87,7 +87,7 @@ int main()
 
     timer.start();
 
-    for(int i=0;i<words_count;i++)
+    for(unsigned long long i=0;i<words_count;i++)
         arr.insert(words[i]);
 
     timer.stop();
@@ -96,10 +96,8 @@ int main()
     output << "Inserting in Unsorted array took: " << timer.getSec() << " seconds.\n\n";
 
 
-
-
     timer.start();
-    for(int i=0;i<words_count;i++)
+    for(unsigned long long i=0;i<words_count;i++)
         sarr.insert(words[i]);
 
     timer.stop();
@@ -108,16 +106,15 @@ int main()
 
 
     timer.start();
-    for(int i=0;i<words_count;i++)
+    for(unsigned long long i=0;i<words_count;i++)
         btree.insert(words[i]);
 
     timer.stop();
     output << "Inserting in Binary Search Tree took: " << timer.getSec() << " seconds.\n\n";
 
 
-
     timer.start();
-    for(int i=0;i<words_count;i++)
+    for(unsigned long long i=0;i<words_count;i++)
         avl.insert(words[i]);
 
     timer.stop();
@@ -125,18 +122,14 @@ int main()
 
 
     timer.start();
-    for(int i=0;i<words_count;i++)
+    for(unsigned long long i=0;i<words_count;i++)
         hash.insert(words[i]);
 
     timer.stop();
     output << "Inserting in Hash Table took: " << timer.getSec() << " seconds.\n\n";
 
 
-
     output << "-----------------------\n\n";
-
-
-
 
 
 
