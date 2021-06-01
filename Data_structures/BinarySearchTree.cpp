@@ -10,6 +10,7 @@ void BinarySearchTree::Output(Node *t) {
     std::cout << t->data << " " << t->count <<  std::endl;
 }
 
+// inserts a new word in the tree, or increases the count variable if it already exists
 Node *BinarySearchTree::InsertNode(Node *n, const std::string &word) {
     if (!n) {   // memory commitment for the new Node if the node pointer points to an empty node
         n = new Node(word);
@@ -19,12 +20,13 @@ Node *BinarySearchTree::InsertNode(Node *n, const std::string &word) {
         n->leftChild = InsertNode(n->leftChild, word);
     } else if (word > n->data) { // if the word is "bigger" than the current node's data, we use recursion to enter the right child of the node
         n->rightChild = InsertNode(n->rightChild, word);
-    } else if (word == n->data) { // finally if the word is found we increase the counter.
+    } else  { // finally if the word is found we increase the counter.
         n->count++;
     }
 
     return n;
 }
+
 
 // insert method, this is the function we use in the main.cpp file to make insertions.
 // InsertNode method does all the work for the insertion.
@@ -32,6 +34,7 @@ void BinarySearchTree::insert(const std::string& word) {
     root = InsertNode(root, word);
 }
 
+// deletes a word from the tree
 Node* BinarySearchTree::DeleteNode(Node *n, const std::string &word)
 {
     if (!n) //if there are no Nodes in the tree we just stop the method because there is nothing to delete.

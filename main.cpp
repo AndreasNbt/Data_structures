@@ -33,7 +33,7 @@ int main()
 
     std::ifstream file, fil1;
     std::string word, filename;
-    filename = R"(C:\Users\andre\Desktop\Data_structures\gutenberg.txt\gutenberg.txt)";
+    filename = R"(C:\Users\andre\Desktop\Data_structures\temp.txt)";
     Timer timer;
 
     array arr;
@@ -92,9 +92,7 @@ int main()
 
     timer.stop();
 
-
     output << "Inserting in Unsorted array took: " << timer.getSec() << " seconds.\n\n";
-
 
     timer.start();
     for(unsigned long long i=0;i<words_count;i++)
@@ -202,6 +200,7 @@ int main()
     output << "-----------------------\n";
 
 
+
     output << "Unsorted array\n";
     output << "-----------------------\n";
 
@@ -220,8 +219,8 @@ int main()
     }
 
 
-
     output << "-----------------------\n\n";
+
     output << "Binary Search Tree\n";
     output << "-----------------------\n";
     for (auto &i: Q) {
@@ -240,7 +239,7 @@ int main()
 
 
     output << "-----------------------\n\n";
-    output << "AVL Tree\n";
+    output << "Hash Table\n";
     output << "-----------------------\n";
     for (auto &i: Q) {
         int c = hash.search(i);
