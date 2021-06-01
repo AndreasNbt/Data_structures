@@ -33,7 +33,7 @@ int main()
 
     std::ifstream file, fil1;
     std::string word, filename;
-    filename = R"(C:\Users\andre\Desktop\Data_structures\temp.txt)";
+    filename = R"(C:\Users\andre\Desktop\Data_structures\gutenberg.txt\gutenberg.txt)";
     Timer timer;
 
     array arr;
