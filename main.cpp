@@ -82,6 +82,8 @@ int main()
         return 0;
     }
 
+    file.close();
+
     output << "Insert method testing\n";
     output << "-----------------------\n";
 
@@ -287,6 +289,7 @@ int main()
     output << "Deleting in AVL Tree took: " << timer.getDuration() << " microseconds.\n";
     output << "-----------------------\n\n\n";
 
+    output.close();
     // Hash table has no remove method
 
 
