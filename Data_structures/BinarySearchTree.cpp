@@ -37,7 +37,7 @@ void BinarySearchTree::insert(const std::string& word) {
 // deletes a word from the tree
 Node* BinarySearchTree::DeleteNode(Node *n, const std::string &word)
 {
-    if (!n) //if there are no Nodes in the tree we just stop the method because there is nothing to delete.
+    if (!n) //if there are no Nodes left in the tree we just stop the method because there is nothing to delete.
         return n;
 
     if (word < n->data) //searching for the Node.
